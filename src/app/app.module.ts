@@ -4,13 +4,23 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+
+import { MenuModule } from './menu/menu.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent,
+    AdminMenuComponent   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
