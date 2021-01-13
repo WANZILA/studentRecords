@@ -1,0 +1,23 @@
+<section class = "container-sm">
+  
+  <main class= "row justify-content-md-center">
+    <section class="col-md-4">
+      <h1> Staff Login</h1>
+      <form>
+        <div class="mb-3">
+          <label for="username" class="form-label">User Name</label>
+          <input type="text" class="form-control" id="username" aria-describedby="username">
+        </div>
+        <div class="mb-3">
+          <label for="passwords" class="form-label">Password</label>
+          <input type="password" class="form-control" id="passwords">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <small> student Login <a [routerLink] = "['../studentLogin']">Go to student Login</a></small>
+      <p> succesiful redirectsto</p>
+      <small>  <a [routerLink] = "['./adminmenu']">Adminmenu</a></small>
+    </section>
+    
+  </main>
+</section>
