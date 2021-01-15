@@ -1,42 +1,74 @@
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Student Records System</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" >Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Registry</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Structures</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Admin</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/adminstudentmenu']">Student</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Reports</a>
-        </li>    
-        <li class="nav-item">
-          <a class="nav-link" href="#">Communications</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Payments</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Admin</a>
-        </li>
-        
-      </ul>
-    </div>
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Registry</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Structures</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Admin
+        </a>
+        <div class="dropdown-menu" aria-labelledby="adminDropdown">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" [routerLink]="['/adminmenu']" routerLinkActive="active" >Add Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active"  [routerLink]="['/adminmenu','adminEdit']" 
+               routerLinkActive="active"> Edit Admin</a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/adminmenu','adminDelete']" 
+               routerLinkActive="active"> Delete Admin </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/adminmenu','adminSearch']" 
+               routerLinkActive="active"> Search Admin</a>
+            </li> 
+        </div>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Student
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" [routerLink]="['/adminstudentmenu']" routerLinkActive="active" >Student Application</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active"  [routerLink]="['/adminstudentmenu','editStudentApplication']" 
+               routerLinkActive="active"> Edit Application</a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/adminstudentmenu','deleteStudentApplication']" 
+               routerLinkActive="active"> Delete Application </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/adminstudentmenu','studentApplicationSearch']" 
+               routerLinkActive="active"> Search Applications</a>
+            </li> 
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Reports</a>
+      </li>    
+      <li class="nav-item">
+        <a class="nav-link" href="#">Communications</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Payments</a>
+      </li>
+     
+    </ul>
   </div>
 </nav>
 <router-outlet></router-outlet>
