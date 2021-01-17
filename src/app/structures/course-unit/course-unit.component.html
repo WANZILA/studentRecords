@@ -1,0 +1,139 @@
+
+<div class="container-md">
+  
+  <form>
+    <h3> Create Course Unit</h3>
+    <section class="row">  
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="courseCode">Course Code </label>
+          <select class="form-control" id="courseCode" name="courseCode">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>        
+        </div>
+      </section>    
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="courseUnitCode"> Course Unit Code </label>
+          <input type="text" class="form-control" name="courseUnitCode" aria-describedby="courseUnitCode">          
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-3">
+        <div class="form-group">
+          <label for="courseUnitName">Course Unit Name </label>
+          <input type="text" class="form-control" name="courseUnitName" aria-describedby="courseUnitName">          
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="creditHours">Credit Hours </label>
+          <input type="text" class="form-control" name="creditHours" aria-describedby="creditHours">          
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="semesterNum">Semester Num </label>
+          <select class="form-control" id="semesterNum" name="semesterNum">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>          
+        </div>
+      </section> 
+    </section> 
+    <h4> Marks Proportion</h4>
+    <section class= "row">
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="totalmark">Course Work</label>
+          <input type="text" class="form-control" name="totalmark" aria-describedby="totalmark">          
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="midExam">Mid Exam</label>
+          <input type="text" class="form-control" name="midExam" aria-describedby="midExam">          
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="totalmark">Final Exam</label>
+          <input type="text" class="form-control" name="totalmark" aria-describedby="totalmark">          
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="totalmark">Total Mark</label>
+          <input type="text" class="form-control" name="totalmark" aria-describedby="totalmark">          
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-1">
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary mb-2 button-margin">Save</button>     
+        </div>
+      </section>
+    </section>
+
+    
+
+  </form>  
+
+</div> 
+   
+<div class="container-md">
+  
+  <form>
+    <h3> Search Course Unit </h3>
+    <section class="row">      
+      <section class="col-sm-6 col-md-3">
+          <div class="form-group">
+            <label for="courseUnitName">Course Unit Name</label>
+            <input type="text" class="form-control" name="courseUnitName" aria-describedby="courseUnitName">          
+          </div>        
+      </section>      
+      <section class="col-sm-6 col-md-8 button-margin">
+        <button type="submit" class="btn btn-primary mb-2">Search</button> 
+      </section>
+    </section>    
+  </form>  
+    
+    <h4>Course</h4>
+    <section class="row">
+      <section class="col-sm-12 col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Course Code</th>
+              <th scope="col">Course Unit Code</th>
+              <th scope="col">Course Name</th>
+              <th scope="col">Credit Hours</th>
+              <th scope="col">Semester Num</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Otto</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Otto</td>
+              <td>Otto</td>
+              <td><a class="btn btn-primary" href="#" role="button">Edit</a></td>
+              <td><a class="btn btn-primary" href="#" role="button">Delete</a></td>
+            </tr>
+          </tbody>
+        </table>
+      
+      </section>
+    </section>
+
+</div>
+
+
