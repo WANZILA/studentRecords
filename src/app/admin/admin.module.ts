@@ -10,7 +10,12 @@ import { AdminDeleteComponent } from './admin-delete/admin-delete.component';
 
 
 @NgModule({
-  declarations: [AdminResetPasswordComponent, AdminEditComponent, AdminSearchComponent, AdminAddComponent, AdminDeleteComponent],
+  declarations: [
+    AdminResetPasswordComponent, 
+    AdminEditComponent, 
+    AdminSearchComponent, 
+    AdminAddComponent, 
+    AdminDeleteComponent],
   imports: [
     CommonModule,
     AdminRoutingModule

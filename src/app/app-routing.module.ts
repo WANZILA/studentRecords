@@ -18,6 +18,10 @@ const routes: Routes = [
     path:'adminmenu',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
+  {
+    path:'structure',
+    loadChildren: () => import('./structures/structures.module').then( m => m.StructuresModule)
+  },
   { 
     path: '', 
     redirectTo:'/login', 

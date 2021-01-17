@@ -12,8 +12,49 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Registry</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Structures</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="structureDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Structure
+        </a>
+        <div class="dropdown-menu" aria-labelledby="structureDropdown">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" [routerLink]="['/structure']" routerLinkActive="active" >Set Intake</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active"  [routerLink]="['/structure','semestername']" 
+               routerLinkActive="active"> Set Semester Name</a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/structure','semesterdate']" 
+               routerLinkActive="active"> Set Semester Date </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/structure','department']" 
+               routerLinkActive="active"> Department</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/structure','course']" 
+               routerLinkActive="active"> Course</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/structure','courseunit']" 
+               routerLinkActive="active"> Course Unit </a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/structure','grade']" 
+               routerLinkActive="active"> Grade</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/structure','marks']" 
+               routerLinkActive="active"> Marks</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/structure','classaward']" 
+               routerLinkActive="active"> Class Award </a>
+            </li> 
+
+
+        </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

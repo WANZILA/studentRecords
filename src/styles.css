@@ -28,6 +28,9 @@ p {
   margin-right: 5px;
 }
 
+.button-margin{
+  margin-top: 1.7rem;
+}
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) { 
 

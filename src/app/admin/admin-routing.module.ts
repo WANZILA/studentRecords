@@ -26,7 +26,7 @@ const routes: Routes = [
         component: AdminEditComponent
       },
       {
-        path: 'deleteAdmin',
+        path: 'adminDelete',
         component: AdminDeleteComponent
       },
       {
