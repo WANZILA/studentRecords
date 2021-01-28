@@ -5,12 +5,66 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto"> 
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Registry</a>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/formSample']">formSample </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="registryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Registry
+        </a>
+        <div class="dropdown-menu" aria-labelledby="registryDropdown">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" [routerLink]="['/registry']" routerLinkActive="active" >Student Applications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active"  [routerLink]="['/registry','admitstudent']" 
+               routerLinkActive="active"> Admit Student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active"  [routerLink]="['/registry','admittedstudents']" 
+               routerLinkActive="active"> Admitted Students</a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/registry','semestercourseunits']" 
+               routerLinkActive="active"> Allocate Course Units </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/registry','enrollstudent']" 
+               routerLinkActive="active"> Enroll Student</a>
+            </li>
+            <li class="nav-item"> 
+              <a class="nav-link active"  [routerLink]="['/registry','enrolledstudents']" 
+               routerLinkActive="active"> Enrolled Students</a>
+            </li> 
+            <li class="nav-item"> 
+              <a class="nav-link active"  [routerLink]="['/registry','unenrolledstudents']" 
+               routerLinkActive="active"> Unenrolled Students</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/registry','entermarks']" 
+               routerLinkActive="active"> Enter Marks</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/registry','viewmarks']" 
+               routerLinkActive="active"> View Marks</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/registry','editmarks']" 
+               routerLinkActive="active"> Edit Marks</a>
+            </li>  
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/registry','importattendance']" 
+               routerLinkActive="active"> Import Attendance </a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/registry','studentall']" 
+               routerLinkActive="active"> All students </a>
+            </li>      
+        </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="structureDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

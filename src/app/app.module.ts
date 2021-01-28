@@ -15,7 +15,7 @@ import { AdminMenuComponent } from './admin-menu/admin-menu.component';
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    AdminMenuComponent   
+    // AdminMenuComponent   
   ],
   imports: [
     BrowserModule,

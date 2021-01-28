@@ -22,6 +22,14 @@ const routes: Routes = [
     path:'structure',
     loadChildren: () => import('./structures/structures.module').then( m => m.StructuresModule)
   },
+  {
+    path: 'registry',
+    loadChildren: () => import('./registry/registry.module').then( m=> m.RegistryModule)
+  },
+  {
+    path: 'formSample',
+    component: AdminMenuComponent
+  },
   { 
     path: '', 
     redirectTo:'/login', 
