@@ -9,14 +9,12 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['/formSample']">formSample </a>
-      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="registryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Registry
         </a>
-        <div class="dropdown-menu" aria-labelledby="registryDropdown">
+        <div class="dropdown-menu" aria-labelledby="registryDropdown"> 
+
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" [routerLink]="['/registry']" routerLinkActive="active" >Student Applications</a>
           </li>
@@ -137,6 +135,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <li class="nav-item">
+            <a class="nav-link active" aria-current="page" [routerLink]="['/adminstudentmenu','formSample']" routerLinkActive="active" >form sample</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" aria-current="page" [routerLink]="['/adminstudentmenu']" routerLinkActive="active" >Student Application</a>
           </li>
           <li class="nav-item">
@@ -171,7 +172,14 @@
 
   <!-- Footer -->
   <footer>
-     
+    <!-- <form [formGroup]="profileForm">  
+      <label>
+        First Name:
+        <input type="text" formControlName="fname">
+      </label>
+       
+    </form> -->
+      
   </footer>
 
 
