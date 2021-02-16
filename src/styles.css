@@ -31,6 +31,15 @@ p {
 .button-margin{
   margin-top: 1.7rem;
 }
+
+.hrClass {
+  /* #f8f9fa */
+  border-top: 2px solid rgba(0,0,0,.45);
+  height: .1em;
+  width: 100%;
+  margin-top: .1rem;
+  margin-bottom: .3rem;
+  }
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) { 
 
