@@ -1,0 +1,41 @@
+<!-- <div class="row">
+   <div class="col-md-6 mx-auto login-box">
+     <h2 class="text-center">User Registration</h2>
+     <hr>
+     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" (blur)="logValidationErrors()">
+       <div class="form-group">
+         <label>Name:</label>
+         <input type="text" class="form-control" formControlName="Name" (blur)="logValidationErrors()">
+         <span class="text-danger" *ngIf="formErrors.Name">
+           {{formErrors.Name}}
+         </span>
+       </div>
+       <div class="form-group">
+         <label>Email:</label>
+         <input type="text" class="form-control" formControlName="Email" (blur)="logValidationErrors()">
+         <span class="text-danger" *ngIf="formErrors.Email">
+           {{formErrors.Email}}
+         </span>
+       </div>
+       <div class="form-group">
+         <label>Password:</label>
+         <input type="text" class="form-control" formControlName="Password" (blur)="logValidationErrors()">
+         <span class="text-danger" *ngIf="formErrors.Password">
+           {{formErrors.Password}}
+         </span>
+       </div>
+       <div class="form-group">
+         <label>ConfirmPassword:</label>
+         <input type="text" class="form-control" formControlName="ConfirmPassword" (blur)="logValidationErrors()">
+         <span class="text-danger" *ngIf="formErrors.ConfirmPassword">
+           {{formErrors.ConfirmPassword}}
+         </span>
+       </div>
+       <div class="row">
+         <div class="col-md-12">
+           <button type="submit" class="btn btn-success" [disabled]="!signUpForm.valid">Submit</button>
+         </div>
+       </div>
+     </form>
+   </div>
+ </div> -->
