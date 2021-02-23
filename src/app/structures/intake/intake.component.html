@@ -1,7 +1,7 @@
 
 <div class="container-md">
   
-  <form>
+  <form (ngSubmit)="save()" [formGroup]="generalForm" novalidate autocomplete="false">
     <h3> Create Intake Date </h3>
     <section class="row">      
       <section class="col-sm-6 col-md-2">

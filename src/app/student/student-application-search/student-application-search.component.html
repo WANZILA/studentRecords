@@ -1,37 +1,62 @@
 
 <div class="container-md">
   
-  <form>
+  <form novalidate [formGroup]="generalForm" (ngSubmit)="save()" >
     <h3> Intake </h3>
     <section class="row">      
-      <section class="col-sm-6 col-md-3">
-        <div class="form-group ">         
-          <label for="intakeName" class="label-margins">intake Name</label>
-            <select class="form-control" name="intakeName" class="form-select">
-              <option>Intake</option>
+      <section class="col-sm-12 col-md-3">
+        <div class="form-group">         
+          <label for="IntakDate" class="label-margins">Intake Name</label>
+            <select class="form-control"  class="form-select"
+              id="intakedate"
+              formControlName="IntakeDate"
+              [ngClass]="{'is-invalid': displayMessage.IntakeDate}">
+              <option></option>
+              <option>choose intake</option>
             </select>
+            <span class="warning-red">
+              {{ displayMessage.IntakeDate}}
+            </span>
         </div>
       </section>
-      <section class="col-sm-6 col-md-3">        
+      <section class="col-sm-12 col-md-4">        
         <div class="form-group">         
-          <label for="studyprogramme" class="label-margins">Study Programme</label>
-            <select class="form-control" name="studyprogramme" class="form-select">
-              <option>StudyProgramme</option>
+          <label for="branchNum" class="label-margins">Branch Name</label>
+            <select class="form-control" class="form-select"
+              id="branchNum"
+              formControlName="branchNum"
+              [ngClass]="{'is-invalid': displayMessage.branchNum}"
+            >
+              <option></option>
+              <option>choose Branch</option>
             </select>
+            <span class="warning-red">
+              {{ displayMessage.branchNum}}
+            </span>
+        </div>
+      </section>
+      <section class="col-sm-12 col-md-4">        
+        <div class="form-group">         
+          <label for="studyprogramme" class="label-margins">Study </label>
+            <select class="form-control"  class="form-select"
+              id="studyprogramme"
+              formControlName="studyprogramme"
+              [ngClass]="{'is-invalid': displayMessage.studyprogramme}"
+            >
+              <option></option>
+              <option>choose StudyProgramme</option>
+            </select>
+            <span class="warning-red">
+              {{ displayMessage.studyprogramme}}
+            </span>
         </div>
       </section> 
-      <section class="col-sm-6 col-md-3">        
-        <div class="form-group">         
-          <label for="branchName" class="label-margins">Branch Name</label>
-            <select class="form-control" name="branchName" class="form-select">
-              <option>choose branch Name</option>
-            </select>
-        </div>
-      </section> 
-      <section class="col-sm-6 col-md-3">
+      <section class="col-sm-6 col-md-1">
         <button type="submit" class="btn btn-primary mb-2">Search</button> 
       </section>
-    </section>    
+     
+    </section>
+    
   </form>  
     
     <h4>Student Names</h4>

@@ -23,6 +23,9 @@ h6 {
 p {
   margin: 0;
 }
+.warning-red{
+  color: rgb(231, 16, 16)
+}
 
 .label-margins{
   margin-right: 5px;

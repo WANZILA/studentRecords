@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared/shared.module';
 
 import { StructuresRoutingModule } from './structures-routing.module';
 import { IntakeComponent } from './intake/intake.component';
@@ -26,7 +27,8 @@ import { UpdateClassAwardComponent } from './update-class-award/update-class-awa
   declarations: [IntakeComponent, SemesterNameComponent, SemesterDatesComponent, DepartmentComponent, CourseComponent, CourseUnitComponent, GradeComponent, MarksComponent, ClassAwardComponent, UpdateIntakeComponent, UpdateSemesterNameComponent, UpdateSemesterDateComponent, UpdateDepartmentComponent, UpdateCourseComponent, UpdateCourseUnitComponent, UpdateGradeComponent, UpdateMarksComponent, UpdateClassAwardComponent],
   imports: [
     CommonModule,
-    StructuresRoutingModule
+    StructuresRoutingModule,
+    SharedModule
   ]
 })
 export class StructuresModule { }

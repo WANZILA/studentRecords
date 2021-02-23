@@ -7,6 +7,8 @@ import { StudentApplicationSearchComponent } from './student-application-search/
 import { EditApplicationComponent } from './edit-application/edit-application.component';
 import { DeleteApplicationComponent } from './delete-application/delete-application.component';
 import { FormSampleComponent } from './form-sample/form-sample.component';
+import { SampleGenericValidationComponent } from './sample-generic-validation/sample-generic-validation.component';
+import { GenericValidation2Component } from './generic-validation2/generic-validation2.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { FormSampleComponent } from './form-sample/form-sample.component';
     EditApplicationComponent,
     DeleteApplicationComponent,
     FormSampleComponent,
+    SampleGenericValidationComponent,
+    GenericValidation2Component,
   ],
   imports: [
     SharedModule,

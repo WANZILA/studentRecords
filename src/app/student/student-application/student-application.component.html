@@ -1,31 +1,55 @@
 
 <div class="container-sm">
   
-  <form>
+  <form novalidate [formGroup]="generalForm" (ngSubmit)="save()"
+  autocomplete="false">
     <h3> Intake </h3>
     <section class="row">      
-      <section class="col-sm-12 col-md-3">
+      <section class="col-sm-12 col-md-4">
         <div class="form-group">         
-          <label for="intakdate" class="label-margins">Intake Name</label>
-            <select class="form-control" name="intakedate" class="form-select">
+          <label for="IntakDate" class="label-margins">Intake Name</label>
+            <select class="form-control"  class="form-select"
+              id="intakedate"
+              formControlName="IntakeDate"
+              [ngClass]="{'is-invalid': displayMessage.IntakeDate}">
+              <option></option>
               <option>choose intake</option>
             </select>
+            <span class="warning-red">
+              {{ displayMessage.IntakeDate}}
+            </span>
         </div>
       </section>
-      <section class="col-sm-12 col-md-3">        
+      <section class="col-sm-12 col-md-4">        
         <div class="form-group">         
           <label for="branchNum" class="label-margins">Branch Name</label>
-            <select class="form-control" name="branchNum" class="form-select">
+            <select class="form-control" class="form-select"
+              id="branchNum"
+              formControlName="branchNum"
+              [ngClass]="{'is-invalid': displayMessage.branchNum}"
+            >
+              <option></option>
               <option>choose Branch</option>
             </select>
+            <span class="warning-red">
+              {{ displayMessage.branchNum}}
+            </span>
         </div>
       </section>
-      <section class="col-sm-12 col-md-6">        
+      <section class="col-sm-12 col-md-4">        
         <div class="form-group">         
-          <label for="studyprogramme" class="label-margins">Study Programme</label>
-            <select class="form-control" name="studyprogramme" class="form-select">
+          <label for="studyprogramme" class="label-margins">Study </label>
+            <select class="form-control"  class="form-select"
+              id="studyprogramme"
+              formControlName="studyprogramme"
+              [ngClass]="{'is-invalid': displayMessage.studyprogramme}"
+            >
+              <option></option>
               <option>choose StudyProgramme</option>
             </select>
+            <span class="warning-red">
+              {{ displayMessage.studyprogramme}}
+            </span>
         </div>
       </section> 
      
@@ -59,42 +83,91 @@
     <h4>Personal Information</h4>
     <section class="row">
       <section class="col-sm-6 col-md-4">
-        <div class="form-group">
+        <div class="form-group mb-2">
           <label for="studentId">Student Id </label>
-          <input type="text" class="form-control" name="studentId" aria-describedby="studentId">          
+          <input type="text" class="form-control" 
+          id="studentId" 
+          aria-describedby="studentId"
+          formControlName ="studentId"
+          [ngClass] ="{'is-invalid': displayMessage.studentId}">  
+          <span class="warning-red" *ngIf="displayMessage.studentId">
+            {{ displayMessage.studentId }}
+          </span>        
         </div>
+        
+        <!--         [ngClass]="{'is-invalid':emailMessage }"/>
+        <span class="invalid-feedback">
+          {{emailMessage}}
+        </span> -->
       </section>
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
-          <label for="title">Title </label>
-          <input type="text" class="form-control" name="title" aria-describedby="title">          
+          <label for="titleId">Title </label>
+          <input type="text" class="form-control" id="titleId"
+          aria-describedby="titleId"
+          formControlName="title"
+          [ngClass]="{'is-invalid': displayMessage.title}"> 
+          <span class="warning-red">
+            {{ displayMessage.title }}
+          </span>         
         </div>
       </section>
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
           <label for="fname">First Name </label>
-          <input type="text" class="form-control" name="fname" aria-describedby="fname">          
+          <input type="text" class="form-control" 
+          id="fname"
+          aria-describedby="fname"
+          formControlName="fname"          
+          [ngClass]="{'is-invalid': displayMessage.fname}"> 
+          <span class="warning-red">
+            {{ displayMessage.fname}}
+          </span>         
         </div>
       </section>
     </section>
     <section class="row">
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
-          <label for="mname">Middle Name </label>
-          <input type="text" class="form-control" name="mname" aria-describedby="mname">          
+          <label for="mName">Middle Name </label>
+          <input type="text" class="form-control" 
+          id="mName" 
+          aria-describedby="mName"
+          formControlName="mName"
+          [ngClass]="{'is-invalid': displayMessage.mName}">   
+          <span class="warning-red">
+            {{ displayMessage.mName }}
+          </span>       
         </div>
+       
       </section>
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
           <label for="lname">Last Name </label>
-          <input type="text" class="form-control" name="lname" aria-describedby="lname">          
+          <input type="text" class="form-control" 
+          id="lname" 
+          aria-describedby="lname"
+          formControlName="lname"
+          [ngClass]="{'is-invalid': displayMessage.lname}"> 
+          <span class="warning-red">
+            {{ displayMessage.lname}}
+          </span>         
         </div>
+        
       </section>
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
           <label for="birthDate">Birth Date </label>
-          <input type="text" class="form-control" name="birthDate" aria-describedby="birthDate">          
-        </div>
+          <input type="text" class="form-control" 
+            id="birthDate"
+            formControlName="birthDate"
+            aria-describedby="birthDate"
+            [ngClass]="{'is-invalid': displayMessage.birthDate}">  
+            <span class="warning-red">
+              {{ displayMessage.birthDate}}
+            </span> 
+          </div>
+          
       </section> 
     </section>
 
@@ -102,13 +175,28 @@
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
           <label for="gender">Gender </label>
-          <input type="text" class="form-control" name="gender" aria-describedby="gender">          
+          <input type="text" class="form-control" 
+           id="gender"
+           aria-describedby="gender"
+           formControlName="gender"
+           [ngClass]="{'is-invalid': displayMessage.gender}"> 
+           <span class="warning-red">
+            {{ displayMessage.gender}}
+          </span>   
         </div>
+        
       </section>
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
           <label for="maritalStatus">Marital Status </label>
-          <input type="text" class="form-control" name="maritalStatus" aria-describedby="maritalStatus">          
+          <input type="text" class="form-control" 
+            id="maritalStatus" 
+            aria-describedby="maritalStatus"
+            formControlName="maritalStatus"
+            [ngClass]="{'is-invalid': displayMessage.maritalStatus}">  
+            <span class="warning-red">
+              {{ displayMessage.maritalStatus }}
+            </span>        
         </div>
       </section>
       <!-- <section class="col-sm-6 col-md-4">
@@ -126,19 +214,41 @@
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
           <label for="nation">Nation</label>
-          <input type="text" class="form-control" name="nation" aria-describedby="nation">          
+          <input type="text" class="form-control"
+           id="nation" 
+           aria-describedby="nation"
+           formControlName="nation"
+           [ngClass]="{'is-invalid': displayMessage.nation}">          
         </div>
+        <span class="warning-red">
+          {{ displayMessage.nation }}
+        </span> 
       </section>
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
           <label for="district">District </label>
-          <input type="text" class="form-control" name="district" aria-describedby="district">          
+          <input type="text" class="form-control" 
+            id="district" 
+            aria-describedby="district"
+            formControlName="district"
+            [ngClass]="{'is-invalid': displayMessage.district}"
+            >          
+            <span class="warning-red">
+              {{ displayMessage.district }}
+            </span>
         </div>
       </section>
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
           <label for="county">County </label>
-          <input type="text" class="form-control" name="emailAddress" aria-describedby="county">          
+          <input type="text" class="form-control" 
+            id="county" 
+            aria-describedby="county"
+            formControlName="county"
+            [ngClass]="{'is-invalid': displayMessage.county}"> 
+            <span class="warning-red">
+              {{ displayMessage.county }}
+            </span>         
         </div>
       </section> 
     </section>
@@ -147,19 +257,40 @@
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
           <label for="subCounty">Sub County </label>
-          <input type="text" class="form-control" name="emailAddress" aria-describedby="subCounty">          
+          <input type="text" class="form-control" 
+            id="subCounty" 
+            aria-describedby="subCounty"
+            formControlName="subCounty"
+            [ngClass]="{'is-invalid': displayMessage.subCounty}"> 
+            <span class="warning-red">
+              {{ displayMessage.subCounty }}
+            </span>           
         </div>
       </section> 
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
           <label for="parish">Parish </label>
-          <input type="text" class="form-control" name="parish" aria-describedby="parish">          
+          <input type="text" class="form-control" 
+            id="parish" 
+            aria-describedby="parish"
+            formControlName="parish"
+            [ngClass]="{'is-invalid': displayMessage.parish}"> 
+            <span class="warning-red">
+              {{ displayMessage.parish }}
+            </span>           
         </div>
       </section> 
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
           <label for="village">Village</label>
-          <input type="text" class="form-control" name="village" aria-describedby="village">          
+          <input type="text" class="form-control" 
+            id="village" 
+            aria-describedby="village"
+            formControlName="village"
+            [ngClass]="{'is-invalid': displayMessage.village}"> 
+            <span class="warning-red">
+              {{ displayMessage.village }}
+            </span>          
         </div>
       </section> 
     </section>
@@ -171,19 +302,40 @@
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
           <label for="phoneAddress1">PhoneAddress </label>
-          <input type="text" class="form-control" name="phoneAddress1" aria-describedby="phoneAddress1">          
+          <input type="text" class="form-control" 
+            id="phoneAddress1" 
+            aria-describedby="phoneAddress1"
+            formControlName="phoneAddress1"
+            [ngClass]="{'is-invalid': displayMessage.phoneAddress1}"> 
+            <span class="warning-red">
+              {{ displayMessage.phoneAddress1 }}
+            </span>                    
         </div>
       </section>
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
           <label for="phoneAddress2">Phone Address 2 </label>
-          <input type="text" class="form-control" name="phoneAddress2" aria-describedby="phoneAddress2">          
+          <input type="text" class="form-control" 
+            id="phoneAddress2" 
+            aria-describedby="phoneAddress2"
+            formControlName="phoneAddress2"
+            [ngClass]="{'is-invalid': displayMessage.phoneAddress2}"> 
+            <span class="warning-red">
+              {{ displayMessage.phoneAddress2 }}
+            </span>                    
         </div>
       </section>
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
           <label for="emailAddress">Email Address </label>
-          <input type="email" class="form-control" name="emailAddress" aria-describedby="emailAddress">          
+          <input type="email" class="form-control" 
+           id="emailAddress" 
+           aria-describedby="emailAddress"
+           formControlName="emailAddress"
+           [ngClass]="{'is-invalid': displayMessage.emailAddress}"> 
+           <span class="warning-red">
+             {{ displayMessage.emailAddress }}
+           </span>                    
         </div>
       </section> 
     </section>  
@@ -195,19 +347,41 @@
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
           <label for="keenName">Name </label>
-          <input type="text" class="form-control" name="keenName" aria-describedby="keenName">          
+          <input type="text" class="form-control" 
+            id="keenName" 
+            aria-describedby="keenName"            
+            formControlName="keenName"
+            [ngClass]="{'is-invalid': displayMessage.keenName}"> 
+            <span class="warning-red">
+              {{ displayMessage.keenName }}
+            </span>                    
         </div>
       </section>
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
           <label for="keenRelationship">Relationship </label>
-          <input type="text" class="form-control" name="keenRelationship" aria-describedby="keenRelationship">          
+          <input type="text" class="form-control" 
+            id="keenRelationship"
+            aria-describedby="keenRelationship"
+            formControlName="keenRelationship"
+            [ngClass]="{'is-invalid': displayMessage.keenRelationship}"> 
+            <span class="warning-red">
+              {{ displayMessage.keenRelationship }}
+            </span>                    
         </div>
       </section>
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
           <label for="keenPhone">Phone </label>
-          <input type="text" class="form-control" name="keenPhone" aria-describedby="keenPhone">          
+          <input type="text" class="form-control" 
+            id="keenPhone" 
+            aria-describedby="keenPhone"
+            formControlName="keenPhone"
+            [ngClass]="{'is-invalid': displayMessage.keenPhone}"> 
+            <span class="warning-red">
+              {{ displayMessage.keenPhone }}
+            </span>          
+                    
         </div>
       </section>
     </section>
@@ -216,13 +390,27 @@
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
           <label for="keenEmail">Email </label>
-          <input type="email" class="form-control" name="keenEmail" aria-describedby="keenEmail">          
+          <input type="email" class="form-control" 
+            id="keenEmail" 
+            aria-describedby="keenEmail"
+            formControlName="keenEmail"
+            [ngClass]="{'is-invalid': displayMessage.keenEmail}"> 
+            <span class="warning-red">
+              {{ displayMessage.keenEmail }}
+            </span>                   
         </div>
       </section>
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
           <label for="keenAddress">Address </label>
-          <input type="text" class="form-control" name="keenAddress" aria-describedby="keenAddress">          
+          <input type="text" class="form-control" 
+            id="keenAddress" 
+            aria-describedby="keenAddress"
+            formControlName="keenAddress"
+            [ngClass]="{'is-invalid': displayMessage.keenAddress}"> 
+            <span class="warning-red">
+              {{ displayMessage.keenAddress }}
+            </span>                   
         </div>
       </section>
     </section>
@@ -234,19 +422,38 @@
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
           <label for="educationLevel">Education Level </label>
-          <input type="text" class="form-control" name="educationLevel" aria-describedby="educationLevel">          
+          <input type="text" class="form-control" 
+            id="educationLevel" 
+            aria-describedby="educationLevel"
+            formControlName="educationLevel"
+            [ngClass]="{'is-invalid': displayMessage.educationLevel}"> 
+            <span class="warning-red">
+              {{ displayMessage.educationLevel }}
+            </span>                    
         </div>
       </section>
       <section class="col-sm-12 col-md-8">
         <div class="form-group">
           <label for="institutions">Example textarea</label>
-          <textarea class="form-control" id="institutions" name="institutions" rows="3"></textarea>
+          <textarea class="form-control" id="institutions" 
+            id="institutions" rows="3"
+            formControlName="institutions"
+            [ngClass]="{'is-invalid': displayMessage.institutions}"
+            ></textarea>
+            <span class="warning-red">
+              {{ displayMessage.educationLevel }}
+            </span> 
         </div>
       </section>
     </section>
     <section class = "row">
       <section class="col-sm-12 col-md-12">
-        <button type="submit" class="btn btn-primary mb-2">Save</button> &nbsp;
+        <button 
+          class="btn btn-primary mb-2"
+          type="submit" 
+          [title]="generalForm.valid ? 'save data ': 'Disabled until the all fields are filled'"
+          [disabled]="!generalForm.valid"          
+          >Save</button> &nbsp;
         <button type="submit" class="btn btn-primary mb-2">Cancel</button>
       </section>
     </section>
