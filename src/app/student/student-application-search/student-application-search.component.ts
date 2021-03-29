@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChildren, ElementRef, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder,Validators, FormControlName, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, fromEvent, merge } from 'rxjs';
 import { debounceTime} from 'rxjs/operators';
 import { GenericValidator } from '../../shared/shared/generic-validator';
+
+import{ Student } from '../student';
+import { StudentService } from '../student.service';
 
 
 @Component({
@@ -23,10 +27,17 @@ export class StudentApplicationSearchComponent implements OnInit, AfterViewInit 
     displayMessage: {[key: string]: string } = {};
     private genericValidator: GenericValidator;
   
-    constructor(private fb: FormBuilder) { 
+    constructor(private fb: FormBuilder,
+      private router: Router,
+      private studentService: StudentService) { 
       //define an instance of the validator for use with this form.
       this.genericValidator = new GenericValidator();
     }
+
+    //for displaying data from db
+    title: string;
+    rows: Student[] = [];
+
   
 
   ngOnInit(): void {
@@ -36,6 +47,8 @@ export class StudentApplicationSearchComponent implements OnInit, AfterViewInit 
       branchNum:['',[Validators.required, Validators.minLength(2)]],
       studyprogramme :['',[Validators.required, Validators.minLength(2)]]
     });
+
+    this.getStudents();
   }
 
   ngAfterViewInit(): void {
@@ -49,7 +62,19 @@ export class StudentApplicationSearchComponent implements OnInit, AfterViewInit 
       this.displayMessage = this.genericValidator.processMessages(this.generalForm);
     });
   }
+ 
+  getStudents(){
+    this.studentService.getStudents().subscribe(
+      result => {
+        this.rows = result;
+      }
+    )
+  }
 
+  encordUrl(text:string){
+    console.log(text);
+    return encodeURIComponent(text);
+  }
 
   // fnameControl = new FormControl('');
   save(){

@@ -74,14 +74,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td><a class="btn btn-primary" href="#" role="button">Edit</a></td>
-              <td><a class="btn btn-primary" href="#" role="button">Delete</a></td>
-            </tr>
+            <ng-container *ngFor="let row of rows">
+              <tr>
+                <td>{{row.studentId}}</td>
+                <td>{{row.fname }}</td>
+                <td>{{row.mname}}</td>
+                <td>{{row.lname}}</td>
+                <!--   [routerLink]="['/adminstudentmenu/editStudentApplication',row.studentId]"-->
+                <td><a class="btn btn-primary" 
+                  [routerLink]="['/adminstudentmenu/editStudentApplication',  encordUrl(row.studentId)]"
+                     role="button">Edit</a></td>
+                <td><a class="btn btn-primary" href="#" role="button">Delete</a></td>
+              </tr>
+            </ng-container>
+            
           </tbody>
         </table>
       

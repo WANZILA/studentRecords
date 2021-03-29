@@ -38,7 +38,7 @@ const VALIDATION_MESSAGES = {
   fname:{
     required: 'Required'
   } ,
-  mName:{
+  mname:{
     required: 'Required'
   } ,
   lname:{
@@ -62,7 +62,7 @@ const VALIDATION_MESSAGES = {
 	district:{
     required: 'Required'
   } ,
-	county:{
+	County:{
     required: 'Required'
   } ,
 	subCounty:{
@@ -83,22 +83,22 @@ const VALIDATION_MESSAGES = {
 	emailAddress:{
     required: 'Required'
   } ,
-  keenName:{
-    required: 'Required'
-  } ,
-	keenRelationship:{
-    required: 'Required'
-  } ,
-	keenPhone:{
-    required: 'Required'
-  } ,
-	keenEmail:{
-    required: 'Required'
-  } ,
-	keenAddress:{
-    required: 'Required'
-  } ,
-	educationLevel:{
+  // keenName:{
+  //   required: 'Required'
+  // } ,
+	// keenRelationship:{
+  //   required: 'Required'
+  // } ,
+	// keenPhone:{
+  //   required: 'Required'
+  // } ,
+	// keenEmail:{
+  //   required: 'Required'
+  // } ,
+	// keenAddress:{
+  //   required: 'Required'
+  // } ,
+	enrollmentStatus:{
     required: 'Required'
   } ,
 	specify:{
@@ -107,36 +107,39 @@ const VALIDATION_MESSAGES = {
   institutions:{
     required: 'Required'
   } ,
-  IntakeDate:{
+  intakeDate:{
     required: 'Required'
   }  ,
 	studyprogramme :{
     required: 'Required'
   },
-
+  courseCode :{
+    required: 'Required'
+  },
   //Structures
-  
+  // IntakeDate
+	// IntakeName
 
 
   ///for samplegeneric validator form
-  email: {
-    required: 'Required',
-    email: 'This email is invalid'
-  },
-  password: {
-    required: 'Required',
-    minlength: 'The password length must be greater than or equal to 8'
-  },
-  confirmPassword: {
-    required: 'Required',
-    match: 'Password does not match'
-  },
-  firstName: {
-    required: 'Required'
-  },
-  lastName: {
-    required: 'Required'
-  }
+    // email: {
+    //   required: 'Required',
+    //   email: 'This email is invalid'
+    // },
+    // password: {
+    //   required: 'Required',
+    //   minlength: 'The password length must be greater than or equal to 8'
+    // },
+    // confirmPassword: {
+    //   required: 'Required',
+    //   match: 'Password does not match'
+    // },
+    // firstName: {
+    //   required: 'Required'
+    // },
+    // lastName: {
+    //   required: 'Required'
+    // }
 };
 
 export class GenericValidator {

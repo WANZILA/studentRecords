@@ -134,7 +134,7 @@
           Student
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" [routerLink]="['/adminstudentmenu','generic2']" routerLinkActive="active" >generic2</a>
           </li>
 
@@ -146,10 +146,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" [routerLink]="['/adminstudentmenu']" routerLinkActive="active" >Student Application</a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link active"  [routerLink]="['/adminstudentmenu','editStudentApplication']" 
-               routerLinkActive="active"> Edit Application</a>
+            <!-- // ['/adminstudentmenu','editStudentApplication'] -->
+            <a class="nav-link active"  [routerLink]="['/adminstudentmenu/editStudentApplication/0']" 
+               routerLinkActive="active"> Add </a>
           </li>
             <li class="nav-item">
               <a class="nav-link active"  [routerLink]="['/adminstudentmenu','deleteStudentApplication']" 

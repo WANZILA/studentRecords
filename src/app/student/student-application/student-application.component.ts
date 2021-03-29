@@ -4,7 +4,7 @@ import { Observable, fromEvent, merge } from 'rxjs';
 import { debounceTime} from 'rxjs/operators';
 import { GenericValidator } from '../../shared/shared/generic-validator';
 
-import { StudentDetails } from '../student';
+// import { StudentDetails } from '../student';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class StudentApplicationComponent implements OnInit, AfterViewInit {
   generalForm: FormGroup;
 
   // data model for managing student data
-  students: StudentDetails = new StudentDetails();
+  //students: StudentDetails = new StudentDetails();
 
  //use generic validation message Class
   displayMessage: {[key: string]: string } = {};
@@ -34,7 +34,6 @@ export class StudentApplicationComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
     // nb add religion 
     this.generalForm = this.fb.group({
     studentId:['',[Validators.required, Validators.minLength(2)]] ,
@@ -67,7 +66,6 @@ export class StudentApplicationComponent implements OnInit, AfterViewInit {
     branchNum:['',[Validators.required, Validators.minLength(2)]],
     studyprogramme :['',[Validators.required, Validators.minLength(2)]]
     });
-
   }
 
   ngAfterViewInit(): void {
