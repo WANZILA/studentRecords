@@ -31,9 +31,12 @@ export class StudentService {
   ) { }
 
   createStudent(student: Student): Observable<Student>{
-    const headers = new HttpHeaders({ 'Content-Type': 'apllication/json'});
-    student.studentId= null;
-    return this.http.post<Student>(this.studentUrl, student,{ headers})
+    // 'Content-Type': 'apllication/json; charset=utf-8'
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    // student.studentId= null;
+    // const studId = this.encordUrl(student.studentId);
+    const url = `${this.studentUrl}/add`;
+    return this.http.post<Student>(url, student,{ headers})
     .pipe( 
       tap(data => console.log('CreateProduct:' + JSON.stringify(data))),
       catchError(this.handleError)
@@ -67,7 +70,18 @@ export class StudentService {
       catchError(this.handleError)
     );
   }
- 
+
+  deleteStudent(id: string): Observable<{}>{
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const studentId = this.encordUrl(id);
+    const url = `${this.studentUrl}/${studentId}`;
+    return this.http.delete<Student>(url, { headers })
+      .pipe(
+        tap(data => console.log('deleteStudent: ' + id)),
+        catchError(this.handleError)
+        );
+  }
+
    updateStudent(student: Student): Observable<Student>{
      const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
      const studId = this.encordUrl(student.studentId);

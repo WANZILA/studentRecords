@@ -9,8 +9,8 @@
     <section class="row">      
       <section class="col-sm-12 col-md-4">
         <div class="form-group">         
-            <!-- <label for="intakeDate" class="label-margins">Intake Name</label>
-            <select class="form-control"  class="form-select"
+            <!-- <label for="intakeDate" class="label-margins">Intake Name</label> -->
+            <!-- <select class="form-control"  class="form-select"
               id="intakeDate"
               formControlName="intakeDate"
               [ngClass]="{'is-invalid': displayMessage.intakeDate}">
@@ -44,12 +44,13 @@
       </section>
       <section class="col-sm-12 col-md-4">        
         <div class="form-group mb-2">
-          <label for="studyprogramme">studyprogramme</label>
+          <label for="studyprogramme">Study Programme</label>
           <input type="text" class="form-control" 
           id="studyprogramme" 
           formControlName ="studyprogramme"
           [ngClass] ="{'is-invalid': displayMessage.studyprogramme}"> 
           <!-- *ngIf="displayMessage.lastName"  -->
+          
           <p class="warning-red" *ngIf="displayMessage.studyprogramme">
             {{ displayMessage.studyprogramme }}
           </p>        
@@ -152,6 +153,8 @@
         </div>
       </section> 
     </section>
+     <!-- <input type="text" name="birthday" value="10/24/1984" /> 
+            appDateField-->
     <section class="row">
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
@@ -184,10 +187,8 @@
       
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
-          <!-- [(ngModel)]="model" 
-            ngbDatepicker #d="ngbDatepicker"  -->
-            <!-- <input type="text" name="birthday" value="10/24/1984" /> 
-            appDateField-->
+         
+           
             
           <label for="birthDate">Birth Date </label>
           <input type="text"
@@ -466,8 +467,8 @@
               {{ displayMessage.educationLevel }}
             </span>                    
         </div>
-      </section> 
-      <!-- <section class="col-sm-12 col-md-8">
+      </section>
+      <!--  don't <section class="col-sm-12 col-md-8">
         <div class="form-group">
           <label for="institutions">Example textarea</label>
           <textarea class="form-control" id="institutions" 
@@ -480,7 +481,7 @@
             </span> 
         </div>
       </section> -->
-    </section>
+     </section> 
     <section class = "row">
       <section class="col-sm-12 col-md-12">
         <button 
@@ -489,7 +490,18 @@
           [title]="generalForm.valid ? 'save data ': 'Disabled until the all fields are filled'"
           [disabled]="!generalForm.valid"          
           >Save</button> &nbsp;
-        <button type="submit" class="btn btn-primary mb-2">Cancel</button>
+        <button class="btn btn-primary mb-2"
+                type="button"
+                title="Cancel your edits"
+                (click)="cancelStudent()">
+          Cancel
+        </button> &nbsp;
+        <button class="btn btn-primary mb-2"
+                type="button"
+                [title]="generalForm.valid ? 'Delete date' : 'Disabled until all the fields are filled'"
+                (click)="deleteStudent()">
+          Delete
+        </button>
       </section>
     </section>
   </form>

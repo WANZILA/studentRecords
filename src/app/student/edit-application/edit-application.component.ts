@@ -14,7 +14,7 @@ import { StudentService } from '../student.service';
 import { GenericValidator } from '../../shared/shared/generic-validator';
 
 // const validateDate = require("validate-date");
-  
+let STUDENTID: string;
 
 @Component({
   selector: 'app-edit-application',
@@ -27,7 +27,7 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   
   
-  pageTitle = 'Student Edit';
+  pageTitle = 'Add Student ';
   errorMessage: string;
   //reference to the FormGroup Model in the html
   generalForm: FormGroup;
@@ -121,8 +121,14 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
           //const id = +params.get('id') + cast id into a number;
           // row.studentId
           const studentId = params.get('studentId');
-          console.log(studentId);
-          this.getStudent(studentId);                 
+          STUDENTID = params.get('studentId');
+          // console.log(STUDENTID);
+          // console.log(studentId);
+          if(STUDENTID==='0'){
+            console.log('nothing');
+          }else{ 
+            this.getStudent(studentId);  
+          }               
         }
       );
 
@@ -167,11 +173,9 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
       //resets the form
       this.generalForm.reset();
     }
-
      ///  this.student = student;
     
-     
-    if(student[0].studentId === ' '){
+     if(student[0].studentId === ' '){
       this.pageTitle ='Add Student';
     } else{
       // this.pageTitle = `Edit Student: ${this.student.studentId}`;
@@ -192,50 +196,76 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
   saveStudent(): void{
         
    // console.log(stud)
-    if(this.generalForm.valid){
-      if(this.generalForm.dirty){
+    if(this.generalForm.valid) {
+      if(this.generalForm.dirty) {
         // validateDate('1992/1/20');
-// console.log(validateDate('1992/1/20'));
+        // console.log(validateDate('1992/1/20'));
   
-   //console.log(Date());
-         
-   const stud = { ...this.student, ...this.generalForm.getRawValue()};
+        //console.log(Date());
+        //const stud = this.generalForm.studentId;
        
-        // console.log(stud);
-        if(stud.studentId === ' '){
-          //create product
-          this.studentService.createStudent(stud)
-           .subscribe({
-             next: () => this.onSaveComplete(),
-             error: err => this.errorMessage = err
-           });
-        } else{
-
-           this.studentService.updateStudent(stud)
+              
+        const stud = { ...this.student, ...this.generalForm.value};
+        let studId = this.encordUrl(stud.studentId);
+          // const stud = { ...this.student, ...this.generalForm.getRawValue()};
+        console.log(stud);
+        //  console.log(STUDENTID);
+       
+        if(STUDENTID === studId) {         
+          this.studentService.updateStudent(stud)
             .subscribe({
               next: () => this.onSaveComplete(),
               error: err => this.errorMessage = err
-            });
-           // console.log(stud);
+            });          
+        } else {
+        //create product
+        // let studId = this.encordUrl(stud.studentId);
+          this.studentService.createStudent(stud)
+           .subscribe({
+            next: () => this.onSaveComplete(),
+            error: err => this.errorMessage = err
+          });
+         // console.log(stud);
         }
       } else {
-        this.onSaveComplete();
-      }
-    } else{
+      this.onSaveComplete();
+    }
+
+    } else {
       this.errorMessage ="Correct the validation errors.";
     }
 
   }
   encordUrl(text:string){
-   // console.log(text);
-    return encodeURIComponent(text);
-  }
+    // console.log(text);
+     return encodeURIComponent(text);
+   }
+ 
+   onSaveComplete(): void{
+     //reset the form to clear the warnings
+     this.generalForm.reset();
+     this.router.navigate(['/adminstudentmenu','studentApplicationSearch']);
+     
+     // console.log(this.generalForm.value);
+   }
 
-  onSaveComplete(): void{
-    //reset the form to clear the warnings
-    // this.generalForm.reset();
-    // this.router.navigate(['/edit-application']);
-    // console.log(this.generalForm.value);
-  }
+   cancelStudent(): void{
+     this.generalForm.reset();
+   }
 
+   deleteStudent(): void{
+    const stud = { ...this.student, ...this.generalForm.value};
+     if(stud.studentId === 0 ) {
+       // Don't delete, it was never saved.
+       this.onSaveComplete();
+     } else {
+       if(confirm(`Are sure you want to Delete:${stud.fname}`)){
+         this.studentService.deleteStudent(stud.studentId)
+         .subscribe({
+           next: () => this.onSaveComplete(),
+           error: err => this.errorMessage = err
+         });
+       }
+     }
+   }
 }

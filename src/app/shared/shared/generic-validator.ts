@@ -62,7 +62,7 @@ const VALIDATION_MESSAGES = {
 	district:{
     required: 'Required'
   } ,
-	County:{
+	county:{
     required: 'Required'
   } ,
 	subCounty:{
@@ -81,6 +81,9 @@ const VALIDATION_MESSAGES = {
     required: 'Required'
   } ,
 	emailAddress:{
+    required: 'Required'
+  } ,
+  educationLevel:{
     required: 'Required'
   } ,
   // keenName:{
@@ -116,6 +119,9 @@ const VALIDATION_MESSAGES = {
   courseCode :{
     required: 'Required'
   },
+  studentStatus:{
+    required: 'Required'
+  }
   //Structures
   // IntakeDate
 	// IntakeName
