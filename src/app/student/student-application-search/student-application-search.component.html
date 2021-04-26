@@ -81,8 +81,10 @@
                 <td>{{row.mname}}</td>
                 <td>{{row.lname}}</td>
                 <!--   [routerLink]="['/adminstudentmenu/editStudentApplication',row.studentId]"-->
+                <!-- encordUrl(row.studentId) -->
                 <td><a class="btn btn-primary" 
-                  [routerLink]="['/adminstudentmenu/editStudentApplication',  encordUrl(row.studentId)]"
+                  
+                  [routerLink]="['/adminstudentmenu/editStudentApplication',  stringReplace(row.studentId)]"
                      role="button">Edit</a></td>
                 <td><a class="btn btn-primary" href="#" role="button">Delete</a></td>
               </tr>

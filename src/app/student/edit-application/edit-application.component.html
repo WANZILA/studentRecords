@@ -499,6 +499,7 @@
         <button class="btn btn-primary mb-2"
                 type="button"
                 [title]="generalForm.valid ? 'Delete date' : 'Disabled until all the fields are filled'"
+                [disabled]="!generalForm.valid"
                 (click)="deleteStudent()">
           Delete
         </button>

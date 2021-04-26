@@ -91,7 +91,7 @@ export class StudentService {
        tap(()=> console.log('update Student' + student.fname)),
        map(() => student),
        catchError(this.handleError)
-     )
+     );
    } 
    
    encordUrl(text:string){
@@ -108,9 +108,9 @@ export class StudentService {
       errorMessage = `An error occured: ${err.error.message}`;
     } else{
       //backend returns unsuccessfull response code 
-      errorMessage = `Backend returned code ${err.status}: ${err.body.error}`;
+      errorMessage = `Backend returned code ${err.status}: ${err.error}`;
     }
-    console.error(err);
+   // console.error(err);
     return throwError(errorMessage);
   }
 

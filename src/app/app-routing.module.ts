@@ -38,7 +38,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes,
+    // supports reloading of app on cpanel
+                                 { useHash: true }
+                                // ,{ relativeLinkResolution: 'legacy' } 
+                                 )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,5 +1,6 @@
 import { FnParam } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit,ViewChildren, ElementRef, AfterViewInit,OnDestroy } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit, ViewChildren, ElementRef, AfterViewInit,OnDestroy } from '@angular/core';
 import { FormControlName, FormGroup, FormBuilder,Validators,AbstractControl } from '@angular/forms';
 import {ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Observable, Subscription, fromEvent, merge } from 'rxjs';
@@ -57,7 +58,9 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
   constructor(private fb: FormBuilder, 
     private route:ActivatedRoute, 
     private router: Router,
-    private studentService: StudentService) { 
+    private studentService: StudentService,
+    @Inject(DOCUMENT) private _document: Document
+    ) { 
     //define an instance of the validator for use with this form.
     this.genericValidator = new GenericValidator();
     /* try this / Define an instance of the validator for use with this form,*/
@@ -76,7 +79,11 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
     //     range: 'Rate the product between 1 (lowest) and 5 (highest).'
     //   }
     // };
+    
   }
+   refreshPage(){
+     this._document.defaultView.location.reload();
+   }
 
   ngOnInit(): void {
     // nb add religion 
@@ -125,7 +132,10 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
           // console.log(STUDENTID);
           // console.log(studentId);
           if(STUDENTID==='0'){
-            console.log('nothing');
+            this.pageTitle ='Add student';
+           // this.refreshPage();
+            this.pageTitle;
+            this.generalForm.reset();
           }else{ 
             this.getStudent(studentId);  
           }               
@@ -220,6 +230,8 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
         } else {
         //create product
         // let studId = this.encordUrl(stud.studentId);
+          // this.generalForm.value.reset();
+          
           this.studentService.createStudent(stud)
            .subscribe({
             next: () => this.onSaveComplete(),
@@ -251,6 +263,7 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
 
    cancelStudent(): void{
      this.generalForm.reset();
+     this.pageTitle;
    }
 
    deleteStudent(): void{
@@ -259,11 +272,13 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
        // Don't delete, it was never saved.
        this.onSaveComplete();
      } else {
-       if(confirm(`Are sure you want to Delete:${stud.fname}`)){
+       if(confirm(`Are sure you want to Delete: ${stud.fname}`)){
          this.studentService.deleteStudent(stud.studentId)
          .subscribe({
-           next: () => this.onSaveComplete(),
-           error: err => this.errorMessage = err
+           next: () => {
+            this.onSaveComplete()
+            },
+          // error: err => this.errorMessage = err
          });
        }
      }

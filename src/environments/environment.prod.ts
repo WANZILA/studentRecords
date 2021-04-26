@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://yourdomina.com:3000'
+  apiUrl: 'http://erp.greenpasturecollege.ac.ug/studentAPI'
+  //http://erp.greenpasturecollege.ac.ug:3000
 };

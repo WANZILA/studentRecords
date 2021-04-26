@@ -71,9 +71,18 @@ export class StudentApplicationSearchComponent implements OnInit, AfterViewInit 
     )
   }
 
-  encordUrl(text:string){
+  // encordUrl(text:string){
+  //   console.log(text);
+  //   return encodeURIComponent(text);
+  // }
+  stringReplace(text:string){
     console.log(text);
-    return encodeURIComponent(text);
+   
+    const txt1 = text.replace('/','_');
+    const txt2 = txt1.replace('/','_');
+     const txt3 = txt2.replace('/','_');
+
+    return txt3;
   }
 
   // fnameControl = new FormControl('');
