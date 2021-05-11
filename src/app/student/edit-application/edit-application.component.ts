@@ -15,7 +15,7 @@ import { StudentService } from '../student.service';
 import { GenericValidator } from '../../shared/shared/generic-validator';
 
 // const validateDate = require("validate-date");
-let STUDENTID: string;
+
 
 @Component({
   selector: 'app-edit-application',
@@ -27,7 +27,10 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
   // access every form input fields in our edit html file
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   
-  
+     
+  // studentid variable
+   STUDENTID: string;
+
   pageTitle = 'Add Student ';
   errorMessage: string;
   //reference to the FormGroup Model in the html
@@ -91,7 +94,7 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
       studentId:['',[Validators.required, Validators.minLength(2)]] ,
       title:['',[Validators.required, Validators.minLength(2)]] ,
       fname:['',[Validators.required, Validators.minLength(2)]] ,
-      mname:['',[Validators.required, Validators.minLength(2)]] ,
+      mname:['null'] ,
       lname:['',[Validators.required, Validators.minLength(2)]] ,
       birthDate:['',[Validators.required, Validators.minLength(1)]] ,
       gender:['',[Validators.required, Validators.minLength(1)]] ,
@@ -121,17 +124,17 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
       courseCode :['',[Validators.required, Validators.minLength(2)]],
       studentStatus :['',[Validators.required, Validators.minLength(1)]]
       });
-      
+       
       //Read the product Id from the route parameter using an observable
       this.sub = this.route.paramMap.subscribe(
         params => {
           //const id = +params.get('id') + cast id into a number;
           // row.studentId
           const studentId = params.get('studentId');
-          STUDENTID = params.get('studentId');
+          this.STUDENTID = params.get('studentId');
           // console.log(STUDENTID);
           // console.log(studentId);
-          if(STUDENTID==='0'){
+          if(this.STUDENTID==='0'){
             this.pageTitle ='Add student';
            // this.refreshPage();
             this.pageTitle;
@@ -141,6 +144,8 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
           }               
         }
       );
+
+
 
 
       
@@ -159,7 +164,14 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
     ).subscribe(value => {
       this.displayMessage = this.genericValidator.processMessages(this.generalForm);
     });
+
   }
+
+  // formateDates():void{
+  //   var userdate:any = new Date(data.draftData.accountHolder.dateOfBirth);
+  //   var datePipe = new DatePipe();
+  //   this.setDob = datePipe.transform(userdate, 'MM/DD/YYYY');v
+  // }
 
   //geting single student id 
   getStudent(studentId: string ): void {
@@ -216,12 +228,17 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
        
               
         const stud = { ...this.student, ...this.generalForm.value};
-        let studId = this.encordUrl(stud.studentId);
+        // let studId = this.encordUrl(stud.studentId);
+        let studId = stud.studentId;
           // const stud = { ...this.student, ...this.generalForm.getRawValue()};
         console.log(stud);
-        //  console.log(STUDENTID);
-       
-        if(STUDENTID === studId) {         
+        // console.log(this.STUDENTID);
+        
+        //change the studentId ptc_J2021_cit_05 to ptc/J2021/cit/05
+        let studentIdReplaced = this.stringReplace2(this.STUDENTID);
+        console.log(studentIdReplaced);
+        
+        if(studentIdReplaced === studId) {         
           this.studentService.updateStudent(stud)
             .subscribe({
               next: () => this.onSaveComplete(),
@@ -255,13 +272,14 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
  
    onSaveComplete(): void{
      //reset the form to clear the warnings
-     this.generalForm.reset();
-     this.router.navigate(['/adminstudentmenu','studentApplicationSearch']);
+     // 05/05/2021
+    //  this.generalForm.reset();
+    //  this.router.navigate(['/adminstudentmenu','studentApplicationSearch']);
      
      // console.log(this.generalForm.value);
    }
 
-   cancelStudent(): void{
+   clearStudent(): void{
      this.generalForm.reset();
      this.pageTitle;
    }
@@ -269,18 +287,25 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
    deleteStudent(): void{
     const stud = { ...this.student, ...this.generalForm.value};
      if(stud.studentId === 0 ) {
-       // Don't delete, it was never saved.
+       // Don't delete, 
        this.onSaveComplete();
      } else {
        if(confirm(`Are sure you want to Delete: ${stud.fname}`)){
          this.studentService.deleteStudent(stud.studentId)
          .subscribe({
-           next: () => {
-            this.onSaveComplete()
-            },
+           next: () => this.onSaveComplete(),
           // error: err => this.errorMessage = err
          });
        }
      }
    }
+
+   stringReplace2(text:string){
+    //  console.log(text);   
+    const txt1 = text.replace('_','/');
+    const txt2 = txt1.replace('_','/');
+     const txt3 = txt2.replace('_','/');
+console.log(txt3);
+    return txt3;
+  }
 }

@@ -73,8 +73,9 @@ export class StudentService {
 
   deleteStudent(id: string): Observable<{}>{
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    const studentId = this.encordUrl(id);
-    const url = `${this.studentUrl}/${studentId}`;
+    // const studentId = this.encordUrl(id);
+    const studentId = this.stringReplace1(id);
+    const url = `${this.studentUrl}/del/${studentId}`;
     return this.http.delete<Student>(url, { headers })
       .pipe(
         tap(data => console.log('deleteStudent: ' + id)),
@@ -84,9 +85,12 @@ export class StudentService {
 
    updateStudent(student: Student): Observable<Student>{
      const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
-     const studId = this.encordUrl(student.studentId);
-     const url = `${this.studentUrl}/${studId}`;
-     return this.http.put<Student>(url, student, { headers })
+     // const studId = this.encordUrl(student.studentId);
+     const studId = this.stringReplace1(student.studentId);
+     // const url = `${this.studentUrl}/${studId}`;
+    //  const url = `${this.studentUrl}/update/${studId}`;
+    const url = `${this.studentUrl}/${studId}`;
+     return this.http.patch<Student>(url, student, { headers })
      .pipe(
        tap(()=> console.log('update Student' + student.fname)),
        map(() => student),
@@ -94,11 +98,18 @@ export class StudentService {
      );
    } 
    
-   encordUrl(text:string){
-   // console.log(text);
-    return encodeURIComponent(text);
+  //  encordUrl(text:string){
+  //  // console.log(text);
+  //   return encodeURIComponent(text);
+  // }
+  stringReplace1(text:string){
+    //  console.log(text);   
+    const txt1 = text.replace('/','_');
+    const txt2 = txt1.replace('/','_');
+     const txt3 = txt2.replace('/','_');
+     console.log(txt3);
+    return txt3;
   }
-
 
   private handleError(err): Observable<never> {
     //in this sample app we will log the errors to the console otherwise we can send to some remote logging server

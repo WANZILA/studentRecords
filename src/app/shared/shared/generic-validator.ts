@@ -38,9 +38,9 @@ const VALIDATION_MESSAGES = {
   fname:{
     required: 'Required'
   } ,
-  mname:{
-    required: 'Required'
-  } ,
+  // mname:{
+  //   required: 'Required'
+  // } ,
   lname:{
     required: 'Required'
   },

@@ -21,11 +21,14 @@
               {{ displayMessage.intakeDate}}
             </span> -->
             <label for="intakeDate">Intake Date </label>
+            <!-- //rs on using angular pipes -->
           <input type="text" class="form-control" 
             id="intakeDate" 
+            type="date"
             formControlName ="intakeDate"
             [ngClass] ="{'is-invalid': displayMessage.intakeDate}"> 
            <p class="warning-red" *ngIf="displayMessage.intakeDate">
+             
             {{ displayMessage.intakeDate }}
           </p>  
         </div>
@@ -36,6 +39,7 @@
           <input type="text" class="form-control" 
             id="branchNum" 
             formControlName ="branchNum"
+            
             [ngClass] ="{'is-invalid': displayMessage.branchNum}"> 
            <p class="warning-red" *ngIf="displayMessage.branchNum">
             {{ displayMessage.branchNum }}
@@ -492,14 +496,12 @@
           >Save</button> &nbsp;
         <button class="btn btn-primary mb-2"
                 type="button"
-                title="Cancel your edits"
-                (click)="cancelStudent()">
+                title="Clear your edits"
+                (click)="clearStudent()">
           Cancel
         </button> &nbsp;
         <button class="btn btn-primary mb-2"
                 type="button"
-                [title]="generalForm.valid ? 'Delete date' : 'Disabled until all the fields are filled'"
-                [disabled]="!generalForm.valid"
                 (click)="deleteStudent()">
           Delete
         </button>
