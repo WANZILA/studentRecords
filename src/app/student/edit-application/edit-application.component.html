@@ -20,17 +20,20 @@
             <span class="warning-red">
               {{ displayMessage.intakeDate}}
             </span> -->
-            <label for="intakeDate">Intake Date </label>
-            <!-- //rs on using angular pipes -->
-          <input type="text" class="form-control" 
+            <!-- learning   works (mouseenter)-->
+
+          <label for="intakeDate">Intake Date </label>
+          <input
+            type="date"          
+            class="form-control" 
             id="intakeDate" 
-            type="date"
-            formControlName ="intakeDate"
+            formControlName ="intakeDate" 
             [ngClass] ="{'is-invalid': displayMessage.intakeDate}"> 
-           <p class="warning-red" *ngIf="displayMessage.intakeDate">
+            <p class="warning-red" *ngIf="displayMessage.intakeDate">
              
             {{ displayMessage.intakeDate }}
           </p>  
+                    
         </div>
       </section>
       <section class="col-sm-12 col-md-4">        
@@ -195,13 +198,12 @@
            
             
           <label for="birthDate">Birth Date </label>
-          <input type="text"
+          <input type="date"
             class="form-control" 
-            
             id="birthDate"
             formControlName="birthDate"
             aria-describedby="birthDate"
-                        
+                          
             [ngClass]="{'is-invalid': displayMessage.birthDate}">  
             <span class="warning-red">
               {{ displayMessage.birthDate}}

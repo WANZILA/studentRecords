@@ -5,6 +5,7 @@ import { FormControlName, FormGroup, FormBuilder,Validators,AbstractControl } fr
 import {ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Observable, Subscription, fromEvent, merge } from 'rxjs';
 import { debounceTime, switchMap,tap } from 'rxjs/operators';
+import * as moment from 'moment';
 
 
 
@@ -84,9 +85,9 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
     // };
     
   }
-   refreshPage(){
-     this._document.defaultView.location.reload();
-   }
+  //  refreshPage(){
+  //    this._document.defaultView.location.reload();
+  //  }
 
   ngOnInit(): void {
     // nb add religion 
@@ -145,11 +146,10 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
         }
       );
 
-
-
-
-      
+          
   }
+
+
   ngOnDestry(): void{
     this.sub.unsubscribe();
   }
@@ -167,11 +167,6 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
 
   }
 
-  // formateDates():void{
-  //   var userdate:any = new Date(data.draftData.accountHolder.dateOfBirth);
-  //   var datePipe = new DatePipe();
-  //   this.setDob = datePipe.transform(userdate, 'MM/DD/YYYY');v
-  // }
 
   //geting single student id 
   getStudent(studentId: string ): void {
@@ -202,17 +197,27 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
     } else{
       // this.pageTitle = `Edit Student: ${this.student.studentId}`;
        this.pageTitle = `Edit Student: ${student[0].studentId}`;
-    }
+        // update the data on the form
+       this.generalForm.patchValue(student[0]);
 
-    // update the data on the form
-      this.generalForm.patchValue(student[0]);
+      /* GETING the intake date fron the JSON string and converting it into 15/08/2020*/
+      const intake = student[0].intakeDate;
+      // passing the intake variable into moment
+       let myMoment: moment.Moment = moment(intake);
+       //targeting the control intakeDate in the component and updating it with the desired formate
+       const intaked = this.generalForm.get('intakeDate').patchValue(myMoment.format('YYYY-MM-DD'));
 
-      // let birth = new Date(this.generalForm.getRawValue('birthDate'));
-
-          this.generalForm.updateValueAndValidity();
-    // console.log(student[0]);
-  
+       const birth = student[0].birthDate;
+       // passing the intake variable into moment
+        let birthMoment: moment.Moment = moment(birth);
+        const birthD = this.generalForm.get('birthDate').patchValue(birthMoment.format('YYYY-MM-DD'));
+      
+    }   
   }
+
+  //update
+  
+
 
    //saving the data
   saveStudent(): void{
@@ -271,10 +276,9 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
    }
  
    onSaveComplete(): void{
-     //reset the form to clear the warnings
-     // 05/05/2021
-    //  this.generalForm.reset();
-    //  this.router.navigate(['/adminstudentmenu','studentApplicationSearch']);
+     // reset the form to clear the warnings
+     this.generalForm.reset();
+     this.router.navigate(['/adminstudentmenu','studentApplicationSearch']);
      
      // console.log(this.generalForm.value);
    }
@@ -308,4 +312,77 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
 console.log(txt3);
     return txt3;
   }
+
+  // changeDates(target: EventTarget): string{
+  //   return ( target as HTMLInputElement).value;
+
+  // }
+   
+
+  // changeDates(inputs: string ){
+  //   // const inputs = document.getElementByClassNames('dateInputs');
+  //  // const inputs = document.querySelector('#intakeDate');
+
+  //  const date = new Date(inputs);
+  // let result = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
+  //   // let result = date.getDate() +'/' +(date.getMonth()+1) + '/'+ date.getFullYear() ;
+  //  // let ress = document.querySelector('#intakeDate').value = result;
+  //  console.log( result);
+  //  return result;
+   
+  // }
+
+  // changeDate(){
+  //   const intaked = this.generalForm.get('intakeDate').value;
+  //   let date =
+  // }
+
+  //date 
+  // updateDate(event: any) {
+  //   // 2021-05-03T21:00:00.000Z
+  //   let date = new Date('2021-05-03T21:00:00.000Z')
+  //   date = event.target.valueAsDate;
+  // }
+
+  // learning
+  clickMessage='';
+
+  onClickMe(){
+    this.clickMessage ='you are hero';
+  } 
+
+
+  // rs https://angular.io/guide/user-input
+  // rs https://stackblitz.com/edit/angular-pqb2xx?file=src%2Fapp%2Fapp.component.ts
+  values = "";
+  update(value: string){
+    //this.value refers to the old value 
+    // value references the newly entered value
+        //this.values += value + '|';
+    if(value){
+      this.values = value;
+    }      
+
+  }
+
+  //change dates
+  // finalDate ='';
+  changeDate(values: string){
+    const intaked = this.generalForm.get('intakeDate').value;
+
+    //const date = new Date(values);
+    //formates the date
+   // let result = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
+    // let myMoment: moment.Moment = moment(values);
+    let myMoment: moment.Moment = moment(intaked);
+    //checks if values has content 
+    if(values){
+      //
+      // this.finalDate = result;
+      // finalDate = myMoment
+      const intaked = this.generalForm.get('intakeDate').patchValue(myMoment.format('L'));
+      
+    }
+  }
+
 }
