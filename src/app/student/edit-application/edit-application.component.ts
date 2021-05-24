@@ -248,7 +248,8 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
             .subscribe({
               next: () => this.onSaveComplete(),
               error: err => this.errorMessage = err
-            });          
+            }); 
+            this.onSaveComplete();         
         } else {
         //create product
         // let studId = this.encordUrl(stud.studentId);
@@ -300,6 +301,7 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
            next: () => this.onSaveComplete(),
           // error: err => this.errorMessage = err
          });
+         this.onSaveComplete();
        }
      }
    }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { catchError, tap, map } from 'rxjs/operators';
+import { catchError, retry, tap, map } from 'rxjs/operators';
 
 import { Student } from './student';
 
@@ -32,11 +32,12 @@ export class StudentService {
 
   createStudent(student: Student): Observable<Student>{
     // 'Content-Type': 'apllication/json; charset=utf-8'
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // student.studentId= null;
     // const studId = this.encordUrl(student.studentId);
     const url = `${this.studentUrl}/add`;
-    return this.http.post<Student>(url, student,{ headers})
+    // return this.http.post<Student>(url, student,{ headers})
+    return this.http.post<Student>(url, student, this.httpOptions)
     .pipe( 
       tap(data => console.log('CreateProduct:' + JSON.stringify(data))),
       catchError(this.handleError)
@@ -75,7 +76,7 @@ export class StudentService {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     // const studentId = this.encordUrl(id);
     const studentId = this.stringReplace1(id);
-    const url = `${this.studentUrl}/del/${studentId}`;
+    const url = `${this.studentUrl}/${studentId}`;
     return this.http.delete<Student>(url, { headers })
       .pipe(
         tap(data => console.log('deleteStudent: ' + id)),
@@ -84,19 +85,23 @@ export class StudentService {
   }
 
    updateStudent(student: Student): Observable<Student>{
-     const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
+     // const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
      // const studId = this.encordUrl(student.studentId);
      const studId = this.stringReplace1(student.studentId);
      // const url = `${this.studentUrl}/${studId}`;
     //  const url = `${this.studentUrl}/update/${studId}`;
-    const url = `${this.studentUrl}/${studId}`;
-     return this.http.patch<Student>(url, student, { headers })
+
+     const url = `${this.studentUrl}/${studId}`;
+     // this.http.put(url, student, this.httpOptions)
+     return this.http.patch<Student>(url, student, this.httpOptions)
      .pipe(
        tap(()=> console.log('update Student' + student.fname)),
        map(() => student),
        catchError(this.handleError)
+       // catchError(this.handleError)<any>('updateStudent)
      );
    } 
+  // etcs tracking gsa
    
   //  encordUrl(text:string){
   //  // console.log(text);
@@ -124,6 +129,21 @@ export class StudentService {
    // console.error(err);
     return throwError(errorMessage);
   }
+  // private handleError(error: HttpErrorResponse){
+  //   if(error.status === 0){
+  //   //a client-side or network error occured. Handle it  accordingly.
+  //   console.error('An error occured:', error.error);
+  //   } else {
+  //     //The backend returned an unsuccessfull response code.
+  //     // the response body may contain clues as to what went wrong.
+  //     console.error(
+  //       `Backend returned code ${error.status},`+ `body was: ${error.error}`);      
+  //   }
+  //   //return an observable with a user-facing error message
+  //   return throwError(
+  //     'Sorry something bad happened;'
+  //   )
+  // }
 
   
 

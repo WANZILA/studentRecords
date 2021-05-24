@@ -15,7 +15,7 @@ import { StudentService } from '../student.service';
   styleUrls: ['./student-application-search.component.css']
 })
 export class StudentApplicationSearchComponent implements OnInit, AfterViewInit {
-    //access  every form input fields in our signup html file
+    //access  every form input fields 
     @ViewChildren(FormControlName, {read: ElementRef })
     formInputElements: ElementRef[];
     // reference to FormGroup Model in the html
