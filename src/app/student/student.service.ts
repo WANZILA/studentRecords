@@ -16,12 +16,11 @@ export class StudentService {
    private studentUrl = `${environment.apiUrl}/student`;
      // private studentUrl;
 
+     // 'Access-Control-Allow-Credentails': 'true',
+     //'Access-Control-Allow-Origin': '*'
     httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentails': 'true',
-        'Access-Control-Allow-Origin': '*'
-      })
+        'Content-Type': 'application/json'      })
     }
     redirectUrl: string;
 
@@ -52,14 +51,7 @@ export class StudentService {
     );
   }
 
-  //  getStudent(studentId: string){
-  //   const url = `${this.studentUrl}/${studentId}`;
-  //    return this.http.get<Student>(url)
-  //    .pipe(
-  //      catchError(this.handleError('getStudent', null))
-  //    )
-  //  }
-  
+
   getStudent(studentId: string): Observable<Student>{
     if(studentId ===' '){
       return of(this.initializeStudent());

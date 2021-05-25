@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChildren, ElementRef, AfterViewInit } from '@angular/core';
-import { FormGroup, FormBuilder,Validators, FormControlName, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder,Validators, FormControlName} from '@angular/forms';
 import { Observable, fromEvent, merge } from 'rxjs';
 import { debounceTime} from 'rxjs/operators';
-import { GenericValidator } from '../../shared/shared/generic-validator';
+import { GenericValidator } from '../../shared/generic-validator';
 
 // import { StudentDetails } from '../student';
 

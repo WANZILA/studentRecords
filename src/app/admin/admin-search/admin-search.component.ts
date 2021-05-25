@@ -1,9 +1,12 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControlName, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControlName } from '@angular/forms';
+import { Observable, fromEvent, merge } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-import { AdminService} from '../admin.service';
 
+import { AdminService} from '../admin.service';
+import { GenericValidator } from '../../shared/generic-Validator';
 
 // import {}
 @Component({

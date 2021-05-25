@@ -6,7 +6,7 @@ import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { AdminSearchComponent } from './admin-search/admin-search.component';
 import { AdminAddComponent } from './admin-add/admin-add.component';
 import { AdminDeleteComponent } from './admin-delete/admin-delete.component';
-import { SharedModule } from '../shared/shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 

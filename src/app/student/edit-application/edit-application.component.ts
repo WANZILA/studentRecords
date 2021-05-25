@@ -13,10 +13,17 @@ import { Student } from '../student';
 import { StudentService } from '../student.service';
 // import{ StudentService }from 
 
-import { GenericValidator } from '../../shared/shared/generic-validator';
+import { GenericValidator } from '../../shared/generic-validator';
 
 // const validateDate = require("validate-date");
-
+const VALIDATION_MESSAGES = {
+  studentId:{
+    required:' Required'
+  },
+  title:{
+    required:' Required'
+  }
+};
 
 @Component({
   selector: 'app-edit-application',
@@ -58,18 +65,18 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
 
   //id: string;
  
-
+  // @Inject(DOCUMENT) private _document: Document
   constructor(private fb: FormBuilder, 
     private route:ActivatedRoute, 
     private router: Router,
     private studentService: StudentService,
-    @Inject(DOCUMENT) private _document: Document
     ) { 
     //define an instance of the validator for use with this form.
-    this.genericValidator = new GenericValidator();
+    this.genericValidator = new GenericValidator(VALIDATION_MESSAGES);
     /* try this / Define an instance of the validator for use with this form,*/
     // // passing in this form's set of validation messages.
-    // this.genericValidator = new GenericValidator(this.validationMessages);
+    
+    // this.genericValidator = new GenericValidator(VALIDATION_MESSAGES);
     // this.validationMessages = {
     //   productName: {
     //     required: 'Product name is required.',

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChildren, ElementRef, AfterViewInit } from '@ang
 import { FormGroup, FormBuilder,Validators, FormControlName, AbstractControl } from '@angular/forms';
 import { Observable, fromEvent, merge } from 'rxjs';
 import { debounceTime} from 'rxjs/operators';
-import { GenericValidator } from '../../shared/shared/generic-validator';
+import { GenericValidator } from '../../shared/generic-validator';
 
 const VALIDATION_MESSAGES = {
   //admin
