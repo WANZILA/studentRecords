@@ -18,6 +18,7 @@ export class StudentService {
 
      // 'Access-Control-Allow-Credentails': 'true',
      //'Access-Control-Allow-Origin': '*'
+     // 'Access-Control-Allow-Methods': '*'
     httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'      })
@@ -178,9 +179,4 @@ export class StudentService {
       // adminId: null 
     };
   }
-
-
-
-
-
 }

@@ -70,8 +70,13 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="structureDropdown">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/structure']" routerLinkActive="active" >Set Intake</a>
+            <a class="nav-link active" aria-current="page" [routerLink]="['/structure','intakeSearch']" routerLinkActive="active" >Intake Search</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" 
+            [routerLink]="['/structure/intakeEdit', 0]" routerLinkActive="active" >Intake Add</a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link active"  [routerLink]="['/structure','semestername']" 
                routerLinkActive="active"> Set Semester Name</a>
@@ -114,16 +119,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="adminDropdown">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/adminmenu']" routerLinkActive="active" >Add Admin</a>
+            <a class="nav-link active" aria-current="page" [routerLink]="['/adminmenu/adminEdit/0']" routerLinkActive="active" >Add Admin</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active"  [routerLink]="['/adminmenu','adminEdit']" 
-               routerLinkActive="active"> Edit Admin</a>
-          </li>
-            <li class="nav-item">
-              <a class="nav-link active"  [routerLink]="['/adminmenu','adminDelete']" 
-               routerLinkActive="active"> Delete Admin </a>
-            </li>
+        
             <li class="nav-item">
               <a class="nav-link active"  [routerLink]="['/adminmenu','adminSearch']" 
                routerLinkActive="active"> Search Admin</a>
@@ -134,19 +132,6 @@
           Student
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
-          <!-- <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/adminstudentmenu','generic2']" routerLinkActive="active" >generic2</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/adminstudentmenu','generic']" routerLinkActive="active" >generic</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/adminstudentmenu','formSample']" routerLinkActive="active" >form sample</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/adminstudentmenu']" routerLinkActive="active" >Student Application</a>
-          </li> -->
           <li class="nav-item">
             <!-- // ['/adminstudentmenu','editStudentApplication'] -->
             <a class="nav-link active"  [routerLink]="['/adminstudentmenu/editStudentApplication/0']" 

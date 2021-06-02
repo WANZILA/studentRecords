@@ -1,100 +1,52 @@
 
 <div class="container-md">
   
-  <form (ngSubmit)="save()" [formGroup]="generalForm" novalidate autocomplete="false">
-    <h3> Create Intake Date </h3>
+  <form (ngSubmit)="saves()" [formGroup]="generalForm" novalidate autocomplete="false">
+    <h1><b>{{pageTitle}}</b></h1>
+    <!-- <h3> Create Intake Date </h3> -->
     <section class="row">      
-      <section class="col-sm-6 col-md-2">
-        <div class="form-group">
-          <label for="year">Year </label>
-          <input type="text" class="form-control" name="year" aria-describedby="year">          
-        </div>
-      </section>
       <section class="col-sm-6 col-md-3">
         <div class="form-group">
-          <label for="month">Month </label>
-          <input type="text" class="form-control" name="month" aria-describedby="month">          
+          <label for="intakeDate">Intake Date </label>
+          <input 
+            type="date" 
+            class="form-control"
+            aria-describedby="intakeDate"
+            formControlName ="intakeDate"
+            [ngClass] = "{'is-invalid': displayMessage.intakeDate}" 
+            >          
+            <span class="warning-red" *ngIf="displayMessage.intakeDate">
+              {{ displayMessage.intakeDate }}
+            </span>
         </div>
       </section>
-      <section class="col-sm-6 col-md-2">
-        <div class="form-group">
-          <label for="day">Day </label>
-          <input type="text" class="form-control" name="day" aria-describedby="day">          
-        </div>
-      </section>
-      <section class="col-sm-6 col-md-3">
+      <section class="col-sm-6 col-md-7">
         <div class="form-group">
           <label for="intakeName">Intake Name </label>
-          <input type="text" class="form-control" name="intakeName" aria-describedby="intakeName">          
+          <input 
+            type="text" 
+            class="form-control"
+            aria-describedby="intakeName"
+            formControlName ="intakeName"
+            [ngClass] = "{'is-invalid': displayMessage.intakeName}" 
+            >          
+            <span class="warning-red" *ngIf="displayMessage.intakeName">
+              {{ displayMessage.intakeName }}
+            </span>    
         </div>
       </section>
       <section class="col-sm-6 col-md-2">
         <div class="form-group">
-          <button type="submit" class="btn btn-primary mb-2 button-margin">Save</button>     
-        </div>
+          <button type="submit" class="btn btn-primary mb-2 button-margin">Save</button> &nbsp;
+          <a class="btn btn-primary" class="btn btn-primary mb-2 button-margin" role="button" (click)="deletes()">Delete</a>    
+        </div>  
+        
       </section>
     </section>  
   </form>  
 
 </div> 
    
-<div class="container-md">
-  
-  <form>
-    <h3> Intake </h3>
-    <section class="row">      
-      <section class="col-sm-6 col-md-3">
-          <div class="form-group">
-            <label for="intakename">Intake Name</label>
-            <input type="text" class="form-control" name="intakeName" aria-describedby="intakename">          
-          </div>        
-      </section>      
-      <section class="col-sm-6 col-md-8 button-margin">
-        <button type="submit" class="btn btn-primary mb-2">Search</button> 
-      </section>
-    </section>    
-  </form>  
-    
-    <h4>Intakes</h4>
-    <section class="row">
-      <section class="col-sm-12 col-md-12">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Intake Date</th>
-              <th scope="col">Intake Name</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td><a class="btn btn-primary" href="#" role="button">Edit</a></td>
-              <td><a class="btn btn-primary" href="#" role="button">Delete</a></td>
-            </tr>
-          </tbody>
-        </table>
-      
-      </section>
-    </section>
 
-
-
-
-
-
-
-
- 
-  
-
-
-
-
-
-
-</div>
 
 

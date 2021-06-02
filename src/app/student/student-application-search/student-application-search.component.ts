@@ -14,6 +14,7 @@ import { StudentService } from '../student.service';
   templateUrl: './student-application-search.component.html',
   styleUrls: ['./student-application-search.component.css']
 })
+
 export class StudentApplicationSearchComponent implements OnInit, AfterViewInit {
     //access  every form input fields 
     @ViewChildren(FormControlName, {read: ElementRef })

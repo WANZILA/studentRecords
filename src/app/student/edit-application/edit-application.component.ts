@@ -1,10 +1,9 @@
-import { FnParam } from '@angular/compiler/src/output/output_ast';
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit, ViewChildren, ElementRef, AfterViewInit,OnDestroy } from '@angular/core';
-import { FormControlName, FormGroup, FormBuilder,Validators,AbstractControl } from '@angular/forms';
-import {ActivatedRoute, Router, ParamMap } from '@angular/router';
+
+import { Component, OnInit, ViewChildren, ElementRef, AfterViewInit,OnDestroy } from '@angular/core';
+import { FormControlName, FormGroup, FormBuilder,Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Observable, Subscription, fromEvent, merge } from 'rxjs';
-import { debounceTime, switchMap,tap } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 import * as moment from 'moment';
 
 
@@ -15,7 +14,7 @@ import { StudentService } from '../student.service';
 
 import { GenericValidator } from '../../shared/generic-validator';
 
-// const validateDate = require("validate-date");
+// messages to be displayed incase of error
 const VALIDATION_MESSAGES = {
   studentId:{
     required:' Required'
@@ -145,8 +144,7 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
           if(this.STUDENTID==='0'){
             this.pageTitle ='Add student';
            // this.refreshPage();
-            this.pageTitle;
-            this.generalForm.reset();
+             this.generalForm.reset();
           }else{ 
             this.getStudent(studentId);  
           }               
@@ -278,10 +276,10 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
     }
 
   }
-  encordUrl(text:string){
-    // console.log(text);
-     return encodeURIComponent(text);
-   }
+  // encordUrl(text:string){
+  //   // console.log(text);
+  //    return encodeURIComponent(text);
+  //  }
  
    onSaveComplete(): void{
      // reset the form to clear the warnings

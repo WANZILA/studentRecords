@@ -5,6 +5,7 @@ import { CourseUnitComponent } from './course-unit/course-unit.component';
 import { CourseComponent } from './course/course.component';
 import { DepartmentComponent } from './department/department.component';
 import { GradeComponent } from './grade/grade.component';
+import { IntakeSearchComponent } from './intake-search/intake-search.component';
 import { IntakeComponent } from './intake/intake.component';
 import { MarksComponent } from './marks/marks.component';
 import { SemesterDatesComponent } from './semester-dates/semester-dates.component';
@@ -24,7 +25,11 @@ const routes: Routes = [
     path: '',
     children:[
       {
-        path: '',
+        path: 'intakeSearch',
+        component: IntakeSearchComponent
+      },
+      {
+        path: 'intakeEdit/:intakeDate',
         component: IntakeComponent
       },
       {

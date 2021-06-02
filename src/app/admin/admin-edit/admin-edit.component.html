@@ -1,7 +1,8 @@
 
 <div class="container-sm">
-  <form  (ngSubmit)="save()" [formGroup]="generalForm" novalidate autocomplete="false">
-    <h3> Department</h3>
+  <form  (ngSubmit)="saves()" [formGroup]="generalForm" novalidate autocomplete="false">
+    <h1> <b>{{pageTitle}}</b></h1>
+    <h5> Search Terms</h5>
     <section class="row">      
       <section class="col-sm-12 col-md-4">
         <div class="form-group">         
@@ -10,7 +11,7 @@
               id="departCode"
               formControlName="departCode"
               [ngClass]="{'is-invalid': displayMessage.departCode}">
-              <option></option>
+              <option value=""></option>
               <option>choose intake</option>
             </select>
             <span class="warning-red">
@@ -51,7 +52,7 @@
         </div>
       </section> 
      
-    </section>    
+    </section>   
     <hr class="hrClass">
 
     <h4>Personal Information</h4>
@@ -99,14 +100,14 @@
     <section class="row">
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
-          <label for="mName">Middle Name </label>
+          <label for="mname">Middle Name </label>
           <input type="text" class="form-control" 
-          id="mName" 
-          aria-describedby="mName"
-          formControlName="mName"
-          [ngClass]="{'is-invalid': displayMessage.mName}">   
+          id="mname" 
+          aria-describedby="mname"
+          formControlName="mname"
+          [ngClass]="{'is-invalid': displayMessage.mname}">   
           <span class="warning-red">
-            {{ displayMessage.mName }}
+            {{ displayMessage.mname }}
           </span>       
         </div>
        
@@ -125,20 +126,21 @@
         </div>
         
       </section>
-      <section class="col-sm-6 col-md-4">
+      <!-- <section class="col-sm-6 col-md-4">
         <div class="form-group">
           <label for="birthDate">Birth Date </label>
-          <input type="text" class="form-control" 
+          <input type="date"
+            class="form-control" 
             id="birthDate"
             formControlName="birthDate"
-            aria-describedby="birthDate"
-            [ngClass]="{'is-invalid': displayMessage.birthDate}">  
+            aria-describedby="birthDate"                       
+            [ngClass]="{'is-invalid': displayMessage.birthDate}">    
             <span class="warning-red">
               {{ displayMessage.birthDate}}
             </span> 
           </div>
           
-      </section> 
+      </section>  -->
     </section>
 
     <section class="row">
@@ -312,80 +314,7 @@
    
     <hr class="hrClass">
 
-    <!-- <h4>Next of Keen</h4>
-    <section class="row">
-      <section class="col-sm-12 col-md-4">
-        <div class="form-group">
-          <label for="keenName">Name </label>
-          <input type="text" class="form-control" 
-            id="keenName" 
-            aria-describedby="keenName"            
-            formControlName="keenName"
-            [ngClass]="{'is-invalid': displayMessage.keenName}"> 
-            <span class="warning-red">
-              {{ displayMessage.keenName }}
-            </span>                    
-        </div>
-      </section>
-      <section class="col-sm-12 col-md-4">
-        <div class="form-group">
-          <label for="keenRelationship">Relationship </label>
-          <input type="text" class="form-control" 
-            id="keenRelationship"
-            aria-describedby="keenRelationship"
-            formControlName="keenRelationship"
-            [ngClass]="{'is-invalid': displayMessage.keenRelationship}"> 
-            <span class="warning-red">
-              {{ displayMessage.keenRelationship }}
-            </span>                    
-        </div>
-      </section>
-      <section class="col-sm-12 col-md-4">
-        <div class="form-group">
-          <label for="keenPhone">Phone </label>
-          <input type="text" class="form-control" 
-            id="keenPhone" 
-            aria-describedby="keenPhone"
-            formControlName="keenPhone"
-            [ngClass]="{'is-invalid': displayMessage.keenPhone}"> 
-            <span class="warning-red">
-              {{ displayMessage.keenPhone }}
-            </span>          
-                    
-        </div>
-      </section>
-    </section>
-
-    <section class="row">
-      <section class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="keenEmail">Email </label>
-          <input type="email" class="form-control" 
-            id="keenEmail" 
-            aria-describedby="keenEmail"
-            formControlName="keenEmail"
-            [ngClass]="{'is-invalid': displayMessage.keenEmail}"> 
-            <span class="warning-red">
-              {{ displayMessage.keenEmail }}
-            </span>                   
-        </div>
-      </section>
-      <section class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="keenAddress">Address </label>
-          <input type="text" class="form-control" 
-            id="keenAddress" 
-            aria-describedby="keenAddress"
-            formControlName="keenAddress"
-            [ngClass]="{'is-invalid': displayMessage.keenAddress}"> 
-            <span class="warning-red">
-              {{ displayMessage.keenAddress }}
-            </span>                   
-        </div>
-      </section>
-    </section>
-
-    <hr class="hrClass"> -->
+    <h4>Login Details</h4>
 
     <h4>UserName and password</h4>
     <section class="row">
@@ -404,14 +333,14 @@
       </section>
       <section class="col-sm-12 col-md-4">
         <div class="form-group">
-          <label for="password">password </label>
+          <label for="passwords">password </label>
           <input type="text" class="form-control" 
-            id="password" 
-            aria-describedby="password"
-            formControlName="password"
-            [ngClass]="{'is-invalid': displayMessage.password}"> 
+            id="passwords" 
+            aria-describedby="passwords"
+            formControlName="passwords"
+            [ngClass]="{'is-invalid': displayMessage.passwords}"> 
             <span class="warning-red">
-              {{ displayMessage.password}}
+              {{ displayMessage.passwords}}
             </span>                    
         </div>
       </section>
@@ -424,7 +353,12 @@
           [title]="generalForm.valid ? 'save data ': 'Disabled until the all fields are filled'"
           [disabled]="!generalForm.valid"          
           >Save</button> &nbsp;
-        <button type="submit" class="btn btn-primary mb-2">Cancel</button>
+        <button type="submit" class="btn btn-primary mb-2">Cancel</button> &nbsp;
+        <button class="btn btn-primary mb-2"
+                type="button"
+                (click)="deletes()">
+          Delete
+        </button>
       </section>
     </section>
   </form>

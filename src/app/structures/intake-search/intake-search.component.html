@@ -1,0 +1,64 @@
+  
+<div class="container-md">
+
+  <form>
+    <h3> Intake </h3>
+    <section class="row">      
+      <section class="col-sm-6 col-md-3">
+          <div class="form-group">
+            <label for="intakename">Intake Name</label>
+            <input type="text" class="form-control" name="intakeName" aria-describedby="intakename">          
+          </div>        
+      </section>      
+      <section class="col-sm-6 col-md-8 button-margin">
+        <button type="submit" class="btn btn-primary mb-2">Filter</button> 
+      </section>
+    </section>    
+  </form>  
+    
+    <h4>Intakes</h4>
+    <section class="row">
+      <section class="col-sm-12 col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Intake Date</th>
+              <th scope="col">Intake Name</th>
+              <th scope="col">Edit</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let row of rows">
+              <tr>
+                <td>{{row.intakeDate| date:'dd/MM/yyyy'}}</td>
+                <td>{{row.intakeName}}</td>
+                <td><a class="btn btn-primary"
+                      [routerLink]="['/structure/intakeEdit', row.intakeDate] " role="button">Edit</a></td>
+                
+              </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      
+      </section>
+    </section>
+
+
+
+
+
+
+
+
+ 
+  
+
+
+
+
+
+
+</div>
+
+
