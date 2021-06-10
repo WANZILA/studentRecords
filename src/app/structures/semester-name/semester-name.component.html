@@ -1,66 +1,49 @@
 
 <div class="container-md">
   
-  <form>
+  <form (ngSubmit)="saves()" [formGroup]="generalForm" novalidate autocomplete="false">
+    <h1><b>{{pageTitle}}</b></h1>
     <h3> Create Semester Name </h3>
     <section class="row">      
-      <section class="col-sm-6 col-md-3">
+      <section class="col-sm-6 col-md-4">
         <div class="form-group">
-          <label for="semesterName">Semester Name </label>
-          <input type="text" class="form-control" name="semesterName" aria-describedby="semesterName">          
+          <label for="semesterName">Semester Number </label>
+          <input 
+            type="text" 
+            class="form-control" 
+            name="semesterNum" 
+            aria-describedby="semesterNum"
+            formControlName ="semesterNum"
+            [ngClass]="{'is-invalid': displayMessage.semesterNum}">  
+            <span class="warning-red" *ngIf="displayMessage.semesterNum">
+              {{ displayMessage.semesterNum}}
+            </span>        
         </div>
       </section>
-      <section class="col-sm-6 col-md-8">
+      <section class="col-sm-6 col-md-4">
         <div class="form-group">
-          <button type="submit" class="btn btn-primary mb-2 button-margin">Save</button>     
+          <label for="semesterName">Semester Name </label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="semesterName" 
+          aria-describedby="semesterName"
+          formControlName ="semesterName"
+            [ngClass]="{'is-invalid': displayMessage.semesterName}"> 
+          <span class="warning-red" *ngIf="displayMessage.semesterName">
+            {{ displayMessage.semesterName}}
+          </span>         
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary mb-2 button-margin">Save</button> &nbsp;
+          <a class="btn btn-primary" class="btn btn-primary mb-2 button-margin" role="button" (click)="deleteOne()">Delete</a> 
         </div>
       </section>
     </section>  
   </form>  
 
 </div> 
-   
-<div class="container-md">
-  
-  <form>
-    <h3> Semester Names </h3>
-    <section class="row">      
-      <section class="col-sm-6 col-md-3">
-        <div class="form-group">
-          <label for="semesterName">Semester Name </label>
-          <input type="text" class="form-control" name="semesterName" aria-describedby="semesterName">          
-        </div>
-      </section>
-      <section class="col-sm-6 col-md-8">
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary mb-2 button-margin">Search</button>     
-        </div>
-      </section>
-    </section>    
-  </form>  
-    
-    <h4>Intakes</h4>
-    <section class="row">
-      <section class="col-sm-12 col-md-12">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">semesterName</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>@mdo</td>
-              <td><a class="btn btn-primary" href="#" role="button">Edit</a></td>
-              <td><a class="btn btn-primary" href="#" role="button">Delete</a></td>
-            </tr>
-          </tbody>
-        </table>
-      
-      </section>
-    </section>
-</div>
-
+ 
 

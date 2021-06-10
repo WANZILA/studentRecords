@@ -9,7 +9,7 @@ import { Intake } from '../structure';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IntakeService } from '../intake.service';
 import { StringReplaceService } from '../../shared/stringReplace.service';
-import { GenericValidator } from 'src/app/shared/generic-validator';
+
 
 const VALIDATION_MESSAGES = {
   //admin

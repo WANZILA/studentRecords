@@ -76,15 +76,22 @@
             <a class="nav-link active" aria-current="page" 
             [routerLink]="['/structure/intakeEdit', 0]" routerLinkActive="active" >Intake Add</a>
           </li>
-
           <li class="nav-item">
-            <a class="nav-link active"  [routerLink]="['/structure','semestername']" 
-               routerLinkActive="active"> Set Semester Name</a>
+            <a class="nav-link active"  [routerLink]="['/structure','semesternameSearch']" 
+               routerLinkActive="active"> Semester Name Search</a>
           </li>
-            <li class="nav-item">
-              <a class="nav-link active"  [routerLink]="['/structure','semesterdate']" 
-               routerLinkActive="active"> Set Semester Date </a>
-            </li>
+          <li class="nav-item">         
+            <a class="nav-link active"  [routerLink]="['/structure/','semesternameEdit', 0]" 
+               routerLinkActive="active"> Semester Name Add</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/structure','semesterdateSearch']" 
+               routerLinkActive="active"> Semester Date Search </a>
+          </li>
+          <li class="nav-item">         
+            <a class="nav-link active"  [routerLink]="['/structure/','semesterdateEdit', 0]" 
+                 routerLinkActive="active"> Semester Date Add</a>
+          </li>
             <li class="nav-item">
               <a class="nav-link active"  [routerLink]="['/structure','department']" 
                routerLinkActive="active"> Department</a>

@@ -22,10 +22,12 @@ import { UpdateGradeComponent } from './update-grade/update-grade.component';
 import { UpdateMarksComponent } from './update-marks/update-marks.component';
 import { UpdateClassAwardComponent } from './update-class-award/update-class-award.component';
 import { IntakeSearchComponent } from './intake-search/intake-search.component';
+import { SemesterDateSearchComponent } from './semester-date-search/semester-date-search.component';
+import { SemesterNameSearchComponent } from './semester-name-search/semester-name-search.component';
 
 
 @NgModule({
-  declarations: [IntakeComponent, SemesterNameComponent, SemesterDatesComponent, DepartmentComponent, CourseComponent, CourseUnitComponent, GradeComponent, MarksComponent, ClassAwardComponent, UpdateIntakeComponent, UpdateSemesterNameComponent, UpdateSemesterDateComponent, UpdateDepartmentComponent, UpdateCourseComponent, UpdateCourseUnitComponent, UpdateGradeComponent, UpdateMarksComponent, UpdateClassAwardComponent, IntakeSearchComponent],
+  declarations: [IntakeComponent, SemesterNameComponent, SemesterDatesComponent, DepartmentComponent, CourseComponent, CourseUnitComponent, GradeComponent, MarksComponent, ClassAwardComponent, UpdateIntakeComponent, UpdateSemesterNameComponent, UpdateSemesterDateComponent, UpdateDepartmentComponent, UpdateCourseComponent, UpdateCourseUnitComponent, UpdateGradeComponent, UpdateMarksComponent, UpdateClassAwardComponent, IntakeSearchComponent, SemesterDateSearchComponent, SemesterNameSearchComponent],
   imports: [
     CommonModule,
     StructuresRoutingModule,
