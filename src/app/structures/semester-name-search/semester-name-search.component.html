@@ -1,0 +1,46 @@
+  
+<div class="container-md">
+  
+  <form>
+    <h3> Semester Names </h3>
+    <section class="row">      
+      <section class="col-sm-6 col-md-3">
+        <div class="form-group">
+          <label for="semesterName">Semester Name </label>
+          <input type="text" class="form-control" name="semesterName" aria-describedby="semesterName">          
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-8">
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary mb-2 button-margin">Filter</button>     
+        </div>
+      </section>
+    </section>    
+  </form>  
+    
+    <h4>Intakes</h4>
+    <section class="row">
+      <section class="col-sm-12 col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">semesterNum</th>
+              <th scope="col">semesterName</th>
+              <th scope="col">Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+           <ng-container *ngFor="let row of rows">
+            <tr>
+              <td>{{row.semesterNum}}</td>
+              <td>{{row.semesterName}}</td>
+              <td><a class="btn btn-primary" 
+                   [routerLink]="['/structure/semesternameEdit',row.semesterNum ]" role="button">Edit</a></td>
+            </tr>
+           </ng-container>
+          </tbody>
+        </table>
+      
+      </section>
+    </section>
+</div>
