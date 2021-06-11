@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { EnterMarksComponent } from './enter-marks/enter-marks.component';
 import { ImportAttendanceComponent } from './import-attendance/import-attendance.component';
+// import { MarkSearchComponent } from './mark-search/mark-search.component';
 import { MarksEnterComponent } from './marks-enter/marks-enter.component';
 import { MarksUpdateComponent } from './marks-update/marks-update.component';
 import { SearchSemesterCourseUnitsComponent } from './search-semester-course-units/search-semester-course-units.component';
@@ -53,6 +54,10 @@ const routes: Routes = [
         path: 'unenrolledstudents',
         component: StudentUnEnrolledComponent
       },
+      // {
+      //   path: 'markSearch',
+      //   component: MarkSearchComponent
+      // }, 
       {
         path: 'entermarks',
         component: MarksEnterComponent

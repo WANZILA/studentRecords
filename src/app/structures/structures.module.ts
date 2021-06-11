@@ -10,24 +10,20 @@ import { DepartmentComponent } from './department/department.component';
 import { CourseComponent } from './course/course.component';
 import { CourseUnitComponent } from './course-unit/course-unit.component';
 import { GradeComponent } from './grade/grade.component';
-import { MarksComponent } from './marks/marks.component';
+
 import { ClassAwardComponent } from './class-award/class-award.component';
-import { UpdateIntakeComponent } from './update-intake/update-intake.component';
-import { UpdateSemesterNameComponent } from './update-semester-name/update-semester-name.component';
-import { UpdateSemesterDateComponent } from './update-semester-date/update-semester-date.component';
-import { UpdateDepartmentComponent } from './update-department/update-department.component';
-import { UpdateCourseComponent } from './update-course/update-course.component';
-import { UpdateCourseUnitComponent } from './update-course-unit/update-course-unit.component';
-import { UpdateGradeComponent } from './update-grade/update-grade.component';
-import { UpdateMarksComponent } from './update-marks/update-marks.component';
-import { UpdateClassAwardComponent } from './update-class-award/update-class-award.component';
+
 import { IntakeSearchComponent } from './intake-search/intake-search.component';
 import { SemesterDateSearchComponent } from './semester-date-search/semester-date-search.component';
 import { SemesterNameSearchComponent } from './semester-name-search/semester-name-search.component';
+import { DepartmentSearchComponent } from './department-search/department-search.component';
+import { CourseSearchComponent } from './course-search/course-search.component';
+import { CourseUnitSearchComponent } from './course-unit-search/course-unit-search.component';
+import { GradeSearchComponent } from './grade-search/grade-search.component';
 
 
 @NgModule({
-  declarations: [IntakeComponent, SemesterNameComponent, SemesterDatesComponent, DepartmentComponent, CourseComponent, CourseUnitComponent, GradeComponent, MarksComponent, ClassAwardComponent, UpdateIntakeComponent, UpdateSemesterNameComponent, UpdateSemesterDateComponent, UpdateDepartmentComponent, UpdateCourseComponent, UpdateCourseUnitComponent, UpdateGradeComponent, UpdateMarksComponent, UpdateClassAwardComponent, IntakeSearchComponent, SemesterDateSearchComponent, SemesterNameSearchComponent],
+  declarations: [IntakeComponent, SemesterNameComponent, SemesterDatesComponent, DepartmentComponent, CourseComponent, CourseUnitComponent, GradeComponent, ClassAwardComponent, IntakeSearchComponent, SemesterDateSearchComponent, SemesterNameSearchComponent, DepartmentSearchComponent, CourseSearchComponent, CourseUnitSearchComponent, GradeSearchComponent, ],
   imports: [
     CommonModule,
     StructuresRoutingModule,

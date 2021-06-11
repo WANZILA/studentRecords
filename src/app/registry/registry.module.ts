@@ -11,6 +11,7 @@ import { StudentEnrollComponent } from './student-enroll/student-enroll.componen
 import { StudentUnEnrolledComponent } from './student-un-enrolled/student-un-enrolled.component';
 import { StudentAdmitComponent } from './student-admit/student-admit.component';
 import { StudentAdmittedComponent } from './student-admitted/student-admitted.component';
+import { MarkSearchComponent } from './mark-search/mark-search.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { StudentAdmittedComponent } from './student-admitted/student-admitted.co
        StudentUnEnrolledComponent, 
        StudentAdmitComponent,
        StudentAdmittedComponent,
+       MarkSearchComponent,
      ],
   imports: [
     CommonModule,

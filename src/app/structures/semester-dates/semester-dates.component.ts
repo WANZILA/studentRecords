@@ -104,7 +104,7 @@ export class SemesterDatesComponent implements OnInit {
 
       }
     );
-    //responds to any changes made by the user actions 
+    //responds to any changes made by the user actions  and updates the semesterCode value accordinlgy
     this.generalForm.get('startDate').valueChanges.subscribe(
       (values) =>{
         this.showsemCode();

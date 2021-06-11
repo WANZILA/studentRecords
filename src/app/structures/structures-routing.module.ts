@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ClassAwardComponent } from './class-award/class-award.component';
+import { CourseSearchComponent } from './course-search/course-search.component';
+import { CourseUnitSearchComponent } from './course-unit-search/course-unit-search.component';
 import { CourseUnitComponent } from './course-unit/course-unit.component';
 import { CourseComponent } from './course/course.component';
+import { DepartmentSearchComponent } from './department-search/department-search.component';
 import { DepartmentComponent } from './department/department.component';
+import { GradeSearchComponent } from './grade-search/grade-search.component';
 import { GradeComponent } from './grade/grade.component';
 import { IntakeSearchComponent } from './intake-search/intake-search.component';
 import { IntakeComponent } from './intake/intake.component';
-import { MarksComponent } from './marks/marks.component';
 import { SemesterDateSearchComponent } from './semester-date-search/semester-date-search.component';
 import { SemesterDatesComponent } from './semester-dates/semester-dates.component';
 import { SemesterNameSearchComponent } from './semester-name-search/semester-name-search.component';
 import { SemesterNameComponent } from './semester-name/semester-name.component';
-import { UpdateClassAwardComponent } from './update-class-award/update-class-award.component';
-import { UpdateCourseUnitComponent } from './update-course-unit/update-course-unit.component';
-import { UpdateCourseComponent } from './update-course/update-course.component';
-import { UpdateDepartmentComponent } from './update-department/update-department.component';
-import { UpdateGradeComponent } from './update-grade/update-grade.component';
-
-import { UpdateMarksComponent } from './update-marks/update-marks.component';
 // import { SemesterDateSearchComponent } from './update-semester-date/update-semester-date.component';
 // import { SemesterDateSearchComponent } from './semester-date-search/semester-date-search.component';
 
@@ -51,53 +47,43 @@ const routes: Routes = [
         component: SemesterDatesComponent
       },
       {
-        path: 'department',
+        path: 'departmentSearch',
+        component: DepartmentSearchComponent
+      },
+      {
+        path: 'departmentEdit/:departCode',
         component: DepartmentComponent
       },
       {
-        path: 'updatedepartment',
-        component: UpdateDepartmentComponent
+        path: 'courseSearch',
+        component: CourseSearchComponent
       },
       {
-        path: 'course',
+        path: 'courseEdit/:courseCode',
         component: CourseComponent
       },
       {
-        path: 'updatecourse',
-        component: UpdateCourseComponent
+        path: 'courseunitSearch' ,
+        component: CourseUnitSearchComponent
       },
       {
-        path: 'courseunit' ,
+        path: 'courseunitEdit/:courseUnitCode' ,
         component: CourseUnitComponent
       },
       {
-        path: 'updatecourseunit' ,
-        component: UpdateCourseUnitComponent
+        path: 'gradeSearch' ,
+        component: GradeSearchComponent
       },
       {
-        path: 'grade' ,
+        path: 'gradeEdit/:gradeCode' ,
         component: GradeComponent
       },
-      {
-        path: 'updategrade' ,
-        component: UpdateGradeComponent
-      },
-      {
-        path: 'marks',
-        component: MarksComponent
-      },
-      {
-        path: 'updatemarks',
-        component: UpdateMarksComponent
-      },
+     
       {
         path: 'classaward',
         component: ClassAwardComponent
       },
-      {
-        path: 'updateclassaward',
-        component: UpdateClassAwardComponent
-      }
+      
     ]
   }
 ];

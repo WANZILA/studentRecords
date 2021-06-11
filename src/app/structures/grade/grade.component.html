@@ -1,84 +1,80 @@
 
 <div class="container-md">
   
-  <form>
-    <h3> Create Grade</h3>
+  <form (ngSubmit)="saves()" [formGroup]="generalForm" novalidate autocomplete="false">
+    <h1>{{pageTitle}}</h1>
     <section class="row">  
   
       <section class="col-sm-6 col-md-3">
         <div class="form-group">
           <label for="gradeCode"> Grade Code </label>
-          <input type="text" class="form-control" name="gradeCode" aria-describedby="gradeCode">          
+          <input 
+            type="text" 
+            class="form-control" 
+            name="gradeCode" 
+            formControlName ="gradeCode"
+            [ngClass]="{'is-invalid': displayMessage.gradeCode}"> 
+          <span class="warning-red" *ngIf="displayMessage.gradeCode">
+            {{ displayMessage.gradeCode}}
+          </span>           
         </div>
       </section>
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
           <label for="gradeRange">Grade Range </label>
-          <input type="text" class="form-control" name="gradeRange" aria-describedby="gradeRange">          
+          <input 
+            type="text" 
+            class="form-control" 
+            name="gradeRange" 
+            formControlName ="gradeRange"
+            [ngClass]="{'is-invalid': displayMessage.gradeRange}"> 
+          <span class="warning-red" *ngIf="displayMessage.gradeRange">
+            {{ displayMessage.gradeRange}}
+          </span>          
         </div>
       </section>
       <section class="col-sm-6 col-md-3">
         <div class="form-group">
           <label for="gradeScore">Grade Score </label>
-          <input type="text" class="form-control" name="gradeScore" aria-describedby="gradeScore">          
+          <input 
+            type="text" 
+            class="form-control" 
+            name="gradeScore" 
+            formControlName ="gradeScore"
+            [ngClass]="{'is-invalid': displayMessage.gradeScore}"> 
+          <span class="warning-red" *ngIf="displayMessage.gradeScore">
+            {{ displayMessage.gradeScore}}
+          </span>          
         </div>
       </section>
-      
-      <section class="col-sm-6 col-md-2">
+    </section> 
+    <section class="row">
+      <section class="col-sm-6 col-md-6">
         <div class="form-group">
-          <button type="submit" class="btn btn-primary mb-2 button-margin">Save</button>     
+          <button 
+          class="btn btn-primary mb-2"
+          type="submit" 
+          [title]="generalForm.valid ? 'save data ': 'Disabled until the all fields are filled'"
+          [disabled]="!generalForm.valid"          
+          >Save</button> &nbsp;
+          <button class="btn btn-primary mb-2"
+                type="button"
+                title="Clear your edits"
+                (click)="clears()">
+          Cancel
+        </button> &nbsp;
+        <button class="btn btn-primary mb-2"
+                type="button"
+                (click)="deleteOne()">
+          Delete
+        </button>
         </div>
       </section>
-    </section>  
+   </section> 
   </form>  
 
 </div> 
    
-<div class="container-md">
-  
-  <form>
-    <h3> Search Grade </h3>
-    <section class="row">      
-      <section class="col-sm-6 col-md-3">
-          <div class="form-group">
-            <label for="gradeCode">Grade Name</label>
-            <input type="text" class="form-control" name="gradeCode" aria-describedby="gradeCode">          
-          </div>        
-      </section>      
-      <section class="col-sm-6 col-md-8 button-margin">
-        <button type="submit" class="btn btn-primary mb-2">Search</button> 
-      </section>
-    </section>    
-  </form>  
-    
-    <h4>Grade</h4>
-    <section class="row">
-      <section class="col-sm-12 col-md-12">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              
-              <th scope="col">Grade Name</th>
-              <th scope="col">Grade Range </th>
-              <th scope="col">Grade Score</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Otto</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td><a class="btn btn-primary" href="#" role="button">Edit</a></td>
-              <td><a class="btn btn-primary" href="#" role="button">Delete</a></td>
-            </tr>
-          </tbody>
-        </table>
-      
-      </section>
-    </section>
 
-</div>
 
 
