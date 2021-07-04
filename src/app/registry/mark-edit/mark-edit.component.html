@@ -1,0 +1,196 @@
+<div class="container-md">
+  
+  <form (ngSubmit)="saves()" [formGroup]="generalForm" novalidate autocomplete="false">
+    <h1>{{pageTitle}}</h1>
+    <section class="row"> 
+      <section class="col-sm-6 col-md-3">
+        <div class="form-group ">         
+          <label for="studentId">Student Id</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="studentId" 
+          formControlName ="studentId"
+          [ngClass]="{'is-invalid': displayMessage.studentId}"> 
+        <span class="warning-red" *ngIf="displayMessage.studentId">
+          {{ displayMessage.studentId }}
+        </span>          
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-3">
+        <div class="form-group ">         
+          <label for="markNum">Student Id</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="markNum" 
+          formControlName ="markNum"
+          > 
+             
+        </div>
+      </section>
+    </section>
+    <section class="row">      
+      <section class="col-sm-6 col-md-3">
+        <div class="form-group ">         
+          <label for="semesterDateCode">semesterDateCode</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="semesterDateCode" 
+          formControlName ="semesterDateCode"
+          [ngClass]="{'is-invalid': displayMessage.semesterDateCode}"> 
+        <span class="warning-red" *ngIf="displayMessage.semesterDateCode">
+          {{ displayMessage.semesterDateCode}}
+        </span>          
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group ">         
+          <label for="semesterNum">semesterNum</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="semesterNum" 
+          formControlName ="semesterNum"
+          [ngClass]="{'is-invalid': displayMessage.semesterNum}"> 
+        <span class="warning-red" *ngIf="displayMessage.semesterNum">
+          {{ displayMessage.semesterNum}}
+        </span>          
+        </div>
+      </section> 
+    </section> 
+    <section class="row">
+      <section class="col-sm-6 col-md-3">        
+        <div class="form-group ">         
+          <label for="courseCode">courseCode</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="courseCode" 
+          formControlName ="courseCode"
+          [ngClass]="{'is-invalid': displayMessage.courseCode}"> 
+        <span class="warning-red" *ngIf="displayMessage.courseCode">
+          {{ displayMessage.courseCode}}
+        </span>          
+        </div>
+      </section>      
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group ">         
+            <label for="courseUnitCode">course Unit Code</label>
+            <input 
+            type="text" 
+            class="form-control" 
+            name="courseUnitCode" 
+            formControlName ="courseUnitCode"
+            [ngClass]="{'is-invalid': displayMessage.courseUnitCode}"> 
+          <span class="warning-red" *ngIf="displayMessage.courseUnitCode">
+            {{ displayMessage.courseUnitCode}}
+          </span>          
+        </div>
+      </section>
+    </section> 
+
+    <section class= "row">
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="totalmark">Course Work</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="coursework" 
+          formControlName ="coursework"
+          [ngClass]="{'is-invalid': displayMessage.coursework}"> 
+        <span class="warning-red" *ngIf="displayMessage.coursework">
+          {{ displayMessage.coursework }}
+        </span>          
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="midExam">Mid Exam</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="midExam" 
+          formControlName ="midExam"
+          [ngClass]="{'is-invalid': displayMessage.midExam}"> 
+        <span class="warning-red" *ngIf="displayMessage.midExam">
+          {{ displayMessage.midExam}}
+        </span>          
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="finalExam">Final Exam</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="finalExam" 
+          formControlName ="finalExam"
+          [ngClass]="{'is-invalid': displayMessage.finalExam}"> 
+        <span class="warning-red" *ngIf="displayMessage.finalExam">
+          {{ displayMessage.finalExam}}
+        </span>           
+        </div>
+      </section>
+    </section>
+    <section class="row">
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="totalMark">Total Mark</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="totalMark" 
+          formControlName ="totalMark"
+          [ngClass]="{'is-invalid': displayMessage.totalMark}"> 
+        <span class="warning-red" *ngIf="displayMessage.totalMark">
+          {{ displayMessage.totalMark}}
+        </span>           
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group">
+          <label for="gradeCode">Grade Code</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="gradeCode" 
+          formControlName ="gradeCode"
+          [ngClass]="{'is-invalid': displayMessage.gradeCode}"> 
+        <span class="warning-red" *ngIf="displayMessage.gradeCode">
+          {{ displayMessage.gradeCode}}
+        </span>           
+        </div>
+      </section>
+    </section>
+    <section class="row">
+      <section class="col-sm-6 col-md-6">
+        <div class="form-group">
+          <button 
+          class="btn btn-primary mb-2"
+          type="submit" 
+          [title]="generalForm.valid ? 'save data ': 'Disabled until the all fields are filled'"
+          [disabled]="!generalForm.valid"          
+          >Save</button> &nbsp;
+          <button class="btn btn-primary mb-2"
+                type="button"
+                title="Clear your edits"
+                (click)="clears()">
+          Cancel
+        </button> 
+
+        </div>
+      </section>
+    </section>
+
+
+    
+
+  </form>  
+
+</div> 
+   
+
+

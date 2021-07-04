@@ -1,0 +1,115 @@
+
+<div class="container-md">
+  
+  <form (ngSubmit)="search()" [formGroup]="generalForm" novalidate autocomplete="false">
+    <h1>{{pageTitle}}</h1>
+    <h4>PLease select the semester and semester Number to enter Marks for</h4>
+    <section class="row">      
+      <section class="col-sm-6 col-md-5">
+        <div class="form-group ">         
+          <label for="semesterDateCode" class="label-margins">semester Date</label>
+            <select class="form-control" name="semesterDateCode"
+            formControlName ="semesterDateCode" class="form-select">
+              <ng-container *ngFor="let rowSem of  rowsSemesterDate">
+                <option value={{rowSem.semesterDateCode}}>{{rowSem.semesterDateName }}</option>
+              </ng-container>
+              
+            </select>
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-4">
+        <div class="form-group ">         
+          <label for="semesterNum" class="label-margins">semester Num </label> 
+          <select (click)= "clearCourses()"  class="form-control" name="semesterNum" class="form-select"
+          formControlName ="semesterNum">
+            <ng-container *ngFor="let rowSemName of  rowsSemesterName">
+              <option value={{rowSemName.semesterNum}}>{{rowSemName.semesterName }}</option>
+            </ng-container>
+            
+          </select> 
+        </div>
+      </section>
+      
+      <section class="col-sm-6 col-md-3">
+        <div class="form-group">
+          <button 
+          class="btn btn-primary mb-2"
+          type="submit" 
+          [title]="generalForm.valid ? 'save data ': 'Disabled until the all fields are filled'"
+          [disabled]="!generalForm.valid"          
+          >Search</button> &nbsp;
+          <button class="btn btn-primary mb-2"
+                type="button"
+                title="Clear your edits"
+                (click)="clears()">
+          Cancel
+        </button>
+        </div>
+      </section> 
+    </section>    
+    <h4>Please select the course and Courseunit to assign Marks</h4>
+    <section class="row">
+      <section class="col-sm-6 col-md-5">        
+        <div class="form-group">         
+          <label for="courseCode" class="label-margins">Course Name</label>
+           <select (click)="searchCourseUnits()" class="form-control" name="courseCode"
+            formControlName ="courseCode" class="form-select">
+              <ng-container *ngFor="let rowCou of  rowsCourse">
+                <option value={{rowCou.courseCode}}>{{rowCou.courseName}}</option>
+              </ng-container>
+              
+            </select>
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-5">        
+        <div class="form-group">         
+          <label for="courseUnitCode" class="label-margins">Course Unit Name</label>
+            <select class="form-control" name="courseUnitCode"
+            formControlName ="courseUnitCode" class="form-select">
+              <ng-container *ngFor="let rowCu of  rowsCourseUnit">
+                <option value={{rowCu.courseUnitCode}}>{{rowCu.courseUnitCode}}  {{rowCu.courseUnitName}}</option>
+              </ng-container>
+              
+            </select>
+        </div>
+      </section>
+
+    </section>
+ 
+  </form>  
+  <section class="row">
+    <section class="col-sm-12 col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Student Id</th>
+            <th scope="col"> First Name</th>
+            <th scope="col">Last  Name</th>
+            <th scope="col">Action</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let row of rowsEnroll">
+            <tr>
+              <td>{{row.studentId}}</td>
+              <td>{{row.fname}}</td>
+              <td>{{row.lname}}</td>
+              <td><a  class="btn btn-primary" target="_blank" rel="noreferrer noopener"
+                [routerLink]= "['/registry/markEdit', 0,{ semCode: getSemesterDateCode(), courseCode:getCourseCode(),cu:getCourseUnitCode(), semNum: getSemesterNum(),
+                studId:row.studentId}]"
+                >Assign Mark</a></td>
+              
+            </tr>
+            <!-- [routerLink]="[{ outlets:{ popup: ['messages']}}]" -->
+          </ng-container>
+        </tbody>
+      </table>
+      
+    </section>
+  </section>
+  
+  
+</div>
+
+

@@ -1,0 +1,47 @@
+<div class="container-md">
+  
+  <form>
+    <h3> Search Grade </h3>
+    <section class="row">      
+      <section class="col-sm-6 col-md-3">
+          <div class="form-group">
+            <label for="gradeCode">Grade Name</label>
+            <input type="text" class="form-control" name="gradeCode" aria-describedby="gradeCode">          
+          </div>        
+      </section>      
+      <section class="col-sm-6 col-md-8 button-margin">
+        <button type="submit" class="btn btn-primary mb-2">Search</button> 
+      </section>
+    </section>    
+  </form>  
+    
+    <h4>Grade</h4>
+    <section class="row">
+      <section class="col-sm-12 col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              
+              <th scope="col">Grade Name</th>
+              <th scope="col">Grade Range </th>
+              <th scope="col">Grade Score</th>
+              <th scope="col">Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let row of rows">
+              <tr>
+                <td>{{row.gradeCode}}</td>
+                <td>{{row.gradeRange}}</td>
+                <td>{{row.gradeScore}}</td>
+                <td><a class="btn btn-primary" 
+                    [routerLink]="['/structure/gradeEdit',row.gradeCode]" role="button">Edit</a></td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      
+      </section>
+    </section>
+
+</div>

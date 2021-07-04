@@ -1,0 +1,101 @@
+
+<div class="container-md">
+  
+  <form (ngSubmit)="search()" [formGroup]="generalForm" novalidate autocomplete="false">
+    <h1>{{pageTitle}}</h1>
+    <section class="row">      
+      <section class="col-sm-6 col-md-4">
+        <div class="form-group ">         
+          <label for="semesterDateCode" class="label-margins">semester Date</label>
+            <select class="form-control" name="semesterDateCode"
+            formControlName ="semesterDateCode" class="form-select">
+              <ng-container *ngFor="let rowSem of  rowsSemesterDate">
+                <option value={{rowSem.semesterDateCode}}>{{rowSem.semesterDateName }}</option>
+              </ng-container>
+              
+            </select>
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-3">
+        <div class="form-group ">         
+          <label for="semesterNum" class="label-margins">semester Num </label> 
+          <select class="form-control" name="semesterNum" class="form-select"
+          formControlName ="semesterNum">
+            <ng-container *ngFor="let rowSemName of  rowsSemesterName">
+              <option value={{rowSemName.semesterNum}}>{{rowSemName.semesterName }}</option>
+            </ng-container>
+            
+          </select> 
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-5">        
+        <div class="form-group">         
+          <label for="courseCode" class="label-margins">Course Name</label>
+            <!-- <select class="form-control" name="admincode" class="form-select">
+              <option>admincode</option>
+            </select> -->
+            <select class="form-control" name="courseCode"
+            formControlName ="courseCode" class="form-select">
+              <ng-container *ngFor="let rowCou of  rowsCourse">
+                <option value={{rowCou.courseCode}}>{{rowCou.courseName}}</option>
+              </ng-container>
+              
+            </select>
+        </div>
+      </section> 
+      <!-- <section class="col-sm-6 col-md-3">
+        <div class="form-group ">         
+          <label for="semesterNum" class="label-margins">semester Num </label> 
+          <select class="form-control" name="semesterNum" class="form-select"
+          formControlName ="semesterNum">
+            <ng-container *ngFor="let rowSemName of  rowsSemesterName">
+              <option value={{rowSemName.semesterNum}}>{{rowSemName.semesterName }}</option>
+            </ng-container>
+            
+          </select> 
+        </div>
+      </section> -->
+      <section class="col-sm-6 col-md-1">
+        <div class="form-group ">         
+          <a class="btn btn-primary" class="btn btn-primary mb-2 button-margin" role="button" (click)="search()">Search</a> 
+        </div>
+      </section>
+
+
+ 
+    </section>    
+ 
+  </form>  
+  <section class="row">
+    <section class="col-sm-12 col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Student Id</th>
+            <th scope="col"> First Name</th>
+            <th scope="col">Last  Name</th>
+            <th scope="col">Action</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let row of rowsEnroll">
+            <tr>
+              <td>{{row.studentId}}</td>
+              <td>{{row.fname}}</td>
+              <td>{{row.lname}}</td>
+              <td><a class="btn btn-primary" 
+                 (click)="deleteOne(row.markNum)">Delete</a></td>
+            </tr>
+            <!-- [routerLink]="[{ outlets:{ popup: ['messages']}}]" -->
+          </ng-container>
+        </tbody>
+      </table>
+      
+    </section>
+  </section>
+  
+  
+</div>
+
+
