@@ -27,3 +27,10 @@ export interface Admin {
 	 username: string;
 	 
 }
+
+export interface Admin_Reg {
+	adminId: string;
+	fname: string ;
+	lname: string ;
+	title: string ;
+}

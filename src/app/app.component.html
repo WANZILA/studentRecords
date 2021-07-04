@@ -15,49 +15,53 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="registryDropdown"> 
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" [routerLink]="['/registry']" routerLinkActive="active" >Student Applications</a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link active"  [routerLink]="['/registry','admitstudent']" 
                routerLinkActive="active"> Admit Student</a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link active"  [routerLink]="['/registry','admittedstudents']" 
                routerLinkActive="active"> Admitted Students</a>
-          </li>
+          </li> -->
             <li class="nav-item">
-              <a class="nav-link active"  [routerLink]="['/registry','semestercourseunits']" 
-               routerLinkActive="active"> Allocate Course Units </a>
+              <a class="nav-link active"  [routerLink]="['/registry','semestercourseunitSearch']" 
+               routerLinkActive="active"> Allocated Course Units Search </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active"  [routerLink]="['/registry','enrollstudent']" 
-               routerLinkActive="active"> Enroll Student</a>
+              <a class="nav-link active"  [routerLink]="['/registry','semestercourseunitAllocate']" 
+               routerLinkActive="active"> Allocate Course Units</a>
             </li>
-            <li class="nav-item"> 
+            <li class="nav-item">
+              <a class="nav-link active"  [routerLink]="['/registry','enrolledstudentSearch']" 
+               routerLinkActive="active"> Enrolled Student Search</a>
+            </li>
+            <!-- <li class="nav-item"> 
               <a class="nav-link active"  [routerLink]="['/registry','enrolledstudents']" 
                routerLinkActive="active"> Enrolled Students</a>
-            </li> 
+            </li>  -->
             <li class="nav-item"> 
-              <a class="nav-link active"  [routerLink]="['/registry','unenrolledstudents']" 
-               routerLinkActive="active"> Unenrolled Students</a>
+              <a class="nav-link active"  [routerLink]="['/registry','enrollstudent']" 
+               routerLinkActive="active"> Enroll Semester Students</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active"  [routerLink]="['/registry','entermarks']" 
-               routerLinkActive="active"> Enter Marks</a>
+              <a class="nav-link active"  [routerLink]="['/registry','markSearch']" 
+               routerLinkActive="active">  Marks search</a>
             </li> 
             <li class="nav-item">
-              <a class="nav-link active"  [routerLink]="['/registry','viewmarks']" 
-               routerLinkActive="active"> View Marks</a>
+              <a class="nav-link active"  [routerLink]="['/registry/markAdd']" 
+               routerLinkActive="active"> Mark Add</a>
             </li> 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link active"  [routerLink]="['/registry','editmarks']" 
                routerLinkActive="active"> Edit Marks</a>
-            </li>  
-            <li class="nav-item">
+            </li>   -->
+            <!-- <li class="nav-item">
               <a class="nav-link active"  [routerLink]="['/registry','importattendance']" 
                routerLinkActive="active"> Import Attendance </a>
-            </li> 
+            </li>  -->
             <li class="nav-item">
               <a class="nav-link active"  [routerLink]="['/registry','studentall']" 
                routerLinkActive="active"> All students </a>

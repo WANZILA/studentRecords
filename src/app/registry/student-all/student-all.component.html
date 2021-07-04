@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="container-md">
   
   <form>
@@ -74,4 +74,49 @@
     </section>
 </div>
 
+ -->
+ <!-- <div>  
 
+  <form [formGroup]="SchoolDetailsForm" (submit)="SaveData()">  
+      <table>  
+          <tr>  
+              <td>  
+                  <b>School Name</b>  
+              </td>  
+              <td>  
+                  <input  type="text" formControlName="SchoolName" />  
+              </td>  
+          </tr>  
+      </table>  
+      <br/>  
+      <table>  
+          <tr formArrayName="ClassDetails" *ngFor="let cd of SchoolDetailsForm.controls.ClassDetails.controls ;let i=index;">  
+              <td formGroupName={{i}}>  
+                  <b>   
+    Class {{cd.get('Class').value}}  
+   </b>  
+                  <input  type="text" formControlName="TotalStudent" placeholder="Total Student" />  
+                  <input  type="text" formControlName="GradeAStudent" placeholder="Total Grade A Student" />  
+                  <input  type="text" formControlName="GradeBStudent" placeholder="Total Grade B Student" />  
+              </td>  
+          </tr>  
+          <tr>  
+              <td>  
+                  <input type="submit" value="Click Me" />  
+              </td>  
+          </tr>  
+      </table>  
+  </form>  
+</div>     -->
+<!-- 
+<div formArrayName="aliases">
+  <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button>
+
+  <div *ngFor="let alias of aliases.controls; let i=index">
+    The repeated alias template
+    <label>
+      Alias:
+      <input type="text" [formControlName]="i">
+    </label>
+  </div>
+</div> -->

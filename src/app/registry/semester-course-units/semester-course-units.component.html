@@ -1,66 +1,102 @@
 
 <div class="container-md">
   
-  <form>
-    <h3> Intake </h3>
+  <form (ngSubmit)="saves()" [formGroup]="generalForm" novalidate autocomplete="false">
+    <h1>{{pageTitle}}</h1>
     <section class="row">      
-      <section class="col-sm-6 col-md-2">
-        <div class="form-group ">         
-          <label for="courseunitcode" class="label-margins">intake Name</label>
-            <select class="form-control" name="courseunitcode" class="form-select">
-              <option>Intake</option>
-            </select>
-        </div>
-      </section>
-      <section class="col-sm-6 col-md-3">        
-        <div class="form-group">         
-          <label for="admincode" class="label-margins">Course Name</label>
-            <select class="form-control" name="admincode" class="form-select">
-              <option>admincode</option>
-            </select>
-        </div>
-      </section> 
-      <section class="col-sm-6 col-md-4">        
-        <div class="form-group">         
-          <label for="semesterDateCode" class="label-margins">Branch Name</label>
-            <select class="form-control" name="semesterDateCode" class="form-select">
-              <option>choose semesterdate name</option>
-            </select>
-        </div>
-      </section> 
       <section class="col-sm-6 col-md-3">
-        <button type="submit" class="btn btn-primary mb-2">Search</button> 
+        <div class="form-group ">         
+          <label for="semesterDateCode">semesterDateCode</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="semesterDateCode" 
+          formControlName ="semesterDateCode"
+          [ngClass]="{'is-invalid': displayMessage.semesterDateCode}"> 
+        <span class="warning-red" *ngIf="displayMessage.semesterDateCode">
+          {{ displayMessage.semesterDateCode}}
+        </span>          
+        </div>
       </section>
-    </section>    
-  </form>  
-
-  <form>
-    
-    <section class="row">      
       <section class="col-sm-6 col-md-2">
         <div class="form-group ">         
-            <label for="courseunitcode">course Unit Code</label>
-            <input type="text" class="form-control" name="courseunitcode" aria-describedby="courseunitcode">          
-        </div>
-      </section>
-      <section class="col-sm-6 col-md-3">        
-        <div class="form-group">         
-          <label for="admincode" class="label-margins">Lecturer</label>
-            <select class="form-control" name="admincode" class="form-select">
-              <option>lect</option>
-            </select>
+          <label for="semesterNum">semesterNum</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="semesterNum" 
+          formControlName ="semesterNum"
+          [ngClass]="{'is-invalid': displayMessage.semesterNum}"> 
+        <span class="warning-red" *ngIf="displayMessage.semesterNum">
+          {{ displayMessage.semesterNum}}
+        </span>          
         </div>
       </section> 
-      <section class="col-sm-6 col-md-4">        
+    </section>     
+  
+    <section class="row">
+      <section class="col-sm-6 col-md-3">        
+        <div class="form-group ">         
+          <label for="courseCode">courseCode</label>
+          <input 
+          type="text" 
+          class="form-control" 
+          name="courseCode" 
+          formControlName ="courseCode"
+          [ngClass]="{'is-invalid': displayMessage.courseCode}"> 
+        <span class="warning-red" *ngIf="displayMessage.courseCode">
+          {{ displayMessage.courseCode}}
+        </span>          
+        </div>
+      </section>      
+      <section class="col-sm-6 col-md-2">
+        <div class="form-group ">         
+            <label for="courseUnitCode">course Unit Code</label>
+            <input 
+            type="text" 
+            class="form-control" 
+            name="courseUnitCode" 
+            formControlName ="courseUnitCode"
+            [ngClass]="{'is-invalid': displayMessage.courseUnitCode}"> 
+          <span class="warning-red" *ngIf="displayMessage.courseUnitCode">
+            {{ displayMessage.courseUnitCode}}
+          </span>          
+        </div>
+      </section>
+    </section> 
+    <section class="row">
+      <section class="col-sm-6 col-md-3">
+        <div class="form-group ">         
+          <label for="adminId" class="label-margins">Lecturer Names</label>
+            <select class="form-control" name="adminId"
+            formControlName ="adminId" class="form-select">
+              <ng-container *ngFor="let rowAd of  rowsAdmin">
+                <option value={{rowAd.adminId}}>{{rowAd.title }} &nbsp;{{ rowAd.lname}} &nbsp; {{ rowAd.fname}}</option>
+              </ng-container>
+              
+            </select>
+        </div>
+      </section>
+      <section class="col-sm-6 col-md-2">        
         <div class="form-group">         
           <label for="notes">notes</label>
           <input type="text" class="form-control" name="notes" aria-describedby="notes">   
         </div>
       </section> 
-      <section class="col-sm-6 col-md-3">
-        <button type="submit" class="btn btn-primary mb-2">Save</button> 
+    </section>
+    <section class="row">
+      <section class="col-sm-6 col-md-6">
+        <div class="form-group">
+          <button 
+          class="btn btn-primary mb-2"
+          type="submit" 
+          [title]="generalForm.valid ? 'save data ': 'Disabled until the all fields are filled'"
+          [disabled]="!generalForm.valid"          
+          >Save</button> 
+
+        </div>
       </section>
-    </section>    
+    </section>   
   </form>  
 
 </div>

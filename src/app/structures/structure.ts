@@ -38,12 +38,25 @@ export interface CourseUnit{
   coursework: string,
   midExam: string,
   finalExam: string, 
-  semesterNum: string,
+  semesterNum: string
 }
+// used in the registrar module for allocating courseunits to admins/ lecturers 
+export interface CourseUnit_Reg{
+  courseUnitCode: string, 
+  courseUnitName: string,
+  courseCode: string,
+  semesterNum: string
+}
+
+export interface CourseUnit_MarkSearch{
+  courseUnitCode: string, 
+  courseUnitName: string
+}
+
 
 export interface Grade{
   gradeCode: string,
   gradeRange: string,
-  gradeScore: string,
+  gradeScore: string
 }
 

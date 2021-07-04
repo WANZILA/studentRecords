@@ -43,6 +43,16 @@ export class AdminService {
       );
   }
 
+  getAllAdmins_Reg():Observable<Admin[]> {
+    return this.http.get<Admin[]>(`${this.generalUrl}/adminReg`)
+      .pipe(
+        tap(data => console.log(JSON.stringify(data))),
+        catchError(
+          this.handleErrors.handleError
+        )
+      );
+  }
+
   getOne(id: string): Observable<Admin> {
     if (id === '') {
       return of(this.initializeAdmin());

@@ -4,7 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { catchError, retry, tap, map } from 'rxjs/operators';
 
-import { Student } from './student';
+import { Student, StudyProgramme } from './student';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +40,16 @@ export class StudentService {
     return this.http.post<Student>(url, student, this.httpOptions)
     .pipe( 
       tap(data => console.log('CreateProduct:' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+ 
+  // used in reg module to get all study programmes 
+  // Nb it must be put in structures in version 0.2
+  get_all_StudyProgrammes(): Observable<StudyProgramme[]>{
+    return this.http.get<StudyProgramme[]>(`${this.studentUrl}/reg`)
+    .pipe(
+      tap(data => console.log(JSON.stringify(data))),
       catchError(this.handleError)
     );
   }

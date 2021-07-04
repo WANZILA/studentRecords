@@ -1,75 +1,69 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EnrollStudentAddComponent } from './enroll-student-add/enroll-student-add.component';
+import { EnrollStudentEditComponent } from './enroll-student-edit/enroll-student-edit.component';
+import { EnrollStudentComponent } from './enroll-student/enroll-student.component';
+import { EnrolledStudentSearchComponent } from './enrolled-student-search/enrolled-student-search.component';
+import { MarkAddComponent } from './mark-add/mark-add.component';
+import { MarkEditComponent } from './mark-edit/mark-edit.component';
 
-import { EnterMarksComponent } from './enter-marks/enter-marks.component';
-import { ImportAttendanceComponent } from './import-attendance/import-attendance.component';
-// import { MarkSearchComponent } from './mark-search/mark-search.component';
-import { MarksEnterComponent } from './marks-enter/marks-enter.component';
-import { MarksUpdateComponent } from './marks-update/marks-update.component';
-import { SearchSemesterCourseUnitsComponent } from './search-semester-course-units/search-semester-course-units.component';
+import { MarkSearchComponent } from './mark-search/mark-search.component';
+import { SemesterCourseUnitAllocateComponent } from './semester-course-unit-allocate/semester-course-unit-allocate.component';
+import { SemesterCourseUnitSearchComponent } from './semester-course-unit-search/semester-course-unit-search.component';
 import { SemesterCourseUnitsComponent } from './semester-course-units/semester-course-units.component';
-import { StudentAdmitComponent } from './student-admit/student-admit.component';
-import { StudentAdmittedComponent } from './student-admitted/student-admitted.component';
+
 import { StudentAllComponent } from './student-all/student-all.component';
-import { StudentApplicationsComponent } from './student-applications/student-applications.component';
-import { StudentEnrollComponent } from './student-enroll/student-enroll.component';
-import { StudentUnEnrolledComponent } from './student-un-enrolled/student-un-enrolled.component';
-import { UpdateSemesterCourseUnitsComponent } from './update-semester-course-units/update-semester-course-units.component';
+
+
 const routes: Routes = [
   { path: '',
     children: [
       {
-        path: '',
-        component: StudentApplicationsComponent
+        path: 'semestercourseunitSearch',
+        component: SemesterCourseUnitSearchComponent
       },
       {
-        path: 'admitstudent',
-        component: StudentAdmitComponent
+        path: 'semestercourseunitAllocate',
+        component: SemesterCourseUnitAllocateComponent
       },
       {
-        path: 'admittedstudents',
-        component: StudentAdmittedComponent
-      },
-      {
-        path: 'semestercourseunits',
-        component: SemesterCourseUnitsComponent
-      },
-      {
-        path: 'updatesemestercourseunits',
-        component: UpdateSemesterCourseUnitsComponent
-      },
-      {
-        path: 'searchsemestercourseunits',
-        component: SearchSemesterCourseUnitsComponent
+        path: 'semestercourseunitAdd',
+        component: SemesterCourseUnitsComponent,
+        
       },
       {
         path: 'enrollstudent',
-        component: StudentEnrollComponent
+        component: EnrollStudentComponent
       },
       {
-        path: 'enrolledstudents',
-        component: StudentEnrollComponent
+        path: 'enrollstudentAdd',
+        component: EnrollStudentAddComponent
       },
       {
-        path: 'unenrolledstudents',
-        component: StudentUnEnrolledComponent
+        path: 'enrollstudentEdit/:markNum',
+        component: EnrollStudentEditComponent
+      },
+      {
+        path: 'enrolledstudentSearch',
+        component: EnrolledStudentSearchComponent
       },
       // {
-      //   path: 'markSearch',
-      //   component: MarkSearchComponent
-      // }, 
+      //   path: 'unenrolledstudents',
+      //   component: StudentUnEnrolledComponent
+      // },
       {
-        path: 'entermarks',
-        component: MarksEnterComponent
-      },
+        path: 'markSearch',
+        component: MarkSearchComponent
+      }, 
       {
-        path: 'editmarks',
-        component: MarksUpdateComponent
-      },
+        path: 'markAdd',
+        component: MarkAddComponent
+      }, 
       {
-        path: 'importattendance',
-        component: ImportAttendanceComponent
+        path: 'markEdit/:markNum',
+        component: MarkEditComponent
       },
+
       {
         path: 'studentall',
         component: StudentAllComponent

@@ -36,6 +36,9 @@ export interface Student {
   
 }
 
+export interface StudyProgramme{
+	studyprogramme: string ;
+}
 // export class Student {  
 // 	constructor(
 // 	public studentId: string,
