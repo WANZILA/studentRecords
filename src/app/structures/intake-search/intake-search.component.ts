@@ -42,8 +42,32 @@ export class IntakeSearchComponent implements OnInit {
   // Variable for traking old intakeDates
   INTAKEDATE: string;
 
+
   //property intake
-  intake: Intake
+  //intake: Intake;
+
+  // variables to filter intakes
+
+  intakes: Intake [] = [];
+  filteredIntakes: Intake[];
+  _listFilter: string;
+  
+    //creating a getter to read values and setter to change filtered values
+    get listFilter(): string {
+      return this._listFilter;
+    }
+
+    set listFilter(value: string){
+      this._listFilter = value;
+      this.filteredIntakes = this.listFilter ? this.performFilter(this.listFilter): this.intakes;
+    }
+
+    performFilter(filterBy: string): Intake[]{
+      filterBy = filterBy.toLocaleLowerCase();
+      return this.intakes.filter((intake: Intake) =>
+        intake.intakeName.toLocaleLowerCase().indexOf(filterBy) !==-1);
+    }
+
 
   //Observable variable to aid in getting the otue parameters
   private sub: Subscription;
@@ -91,11 +115,13 @@ export class IntakeSearchComponent implements OnInit {
 
   //get all intakes
   getAll_Intakes(): void {
-    this.generalService.getAll_Intakes().subscribe(
-      result => {
-        this.rows = result
-      }
-    )
+    this.generalService.getAll_Intakes().subscribe({
+      next: intakes => {
+        this.intakes = intakes
+        this.filteredIntakes = this.intakes;
+      },
+      error: err => this.errorMessage = err
+    })
   }
 
   // showing the searched intake
@@ -122,15 +148,6 @@ export class IntakeSearchComponent implements OnInit {
       }
     }
 
-  }
-
-
-
-   onSaveComplete(): void{
-    // reset the form to clear the warnings
-    this.generalForm.reset();
-    // this.router.navigate(['/adminmenu','adminSearch']);
-   // console.log('yes ');
   }
 
  

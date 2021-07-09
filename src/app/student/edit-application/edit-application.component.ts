@@ -8,11 +8,16 @@ import * as moment from 'moment';
 
 
 
-import { Student } from '../student';
+import { Student, StudyProgramme } from '../student';
 import { StudentService } from '../student.service';
 // import{ StudentService }from 
 
 import { GenericValidator } from '../../shared/generic-validator';
+import { Intake, Branch, Course} from 'src/app/structures/structure';
+import { BranchService } from 'src/app/structures/branch.service';
+import { IntakeService } from 'src/app/structures/intake.service';
+import { StudyProgrammeService } from 'src/app/structures/studyprogrammes.service';
+import { CourseService } from 'src/app/structures/course.service';
 
 // messages to be displayed incase of error
 const VALIDATION_MESSAGES = {
@@ -34,14 +39,18 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
   // access every form input fields in our edit html file
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   
-     
-  // studentid variable
+       // studentid variable
    STUDENTID: string;
 
   pageTitle = 'Add Student ';
   errorMessage: string;
   //reference to the FormGroup Model in the html
   generalForm: FormGroup;
+
+  rowsIntake: Intake[] =[];
+  rowBranch: Branch[] = []; 
+  rowStudyProg: StudyProgramme[] = [];
+  rowsCourse: Course[] = [];
 
   //property student
   student: Student;
@@ -69,6 +78,10 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
     private route:ActivatedRoute, 
     private router: Router,
     private studentService: StudentService,
+    private intakeService: IntakeService,
+    private studyprogservice: StudyProgrammeService,
+    private branchservice: BranchService,
+    private courseService: CourseService
     ) { 
     //define an instance of the validator for use with this form.
     this.genericValidator = new GenericValidator(VALIDATION_MESSAGES);
@@ -107,15 +120,15 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
       gender:['',[Validators.required, Validators.minLength(1)]] ,
       maritalStatus:['',[Validators.required, Validators.minLength(1)]] ,
     // //  // children:['',[Validators.required, Validators.minLength(2)]],
-      nation:['',[Validators.required, Validators.minLength(2)]],
-      district:['',[Validators.required, Validators.minLength(2)]] ,
-      county:['',[Validators.required, Validators.minLength(2)]] ,
-      subCounty:['',[Validators.required, Validators.minLength(2)]] ,
-      parish:['',[Validators.required, Validators.minLength(2)]] ,
-      village:['',[Validators.required, Validators.minLength(2)]] ,
+      nation:[''],
+      district:[''] ,
+      county:[''] ,
+      subCounty:[''] ,
+      parish:[''] ,
+      village:[''] ,
       phoneAddress1:['',[Validators.required, Validators.minLength(1)]] ,
       phoneAddress2:[''] ,
-      emailAddress:['',[Validators.required, Validators.minLength(1)]] ,
+      emailAddress:[''] ,
       educationLevel:['',[Validators.required, Validators.minLength(1)]] ,
       // // keenName:['',[Validators.required, Validators.minLength(2)]] ,
       // // keenRelationship:['',[Validators.required, Validators.minLength(2)]] ,
@@ -146,10 +159,16 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
            // this.refreshPage();
              this.generalForm.reset();
           }else{ 
+            
             this.getStudent(studentId);  
           }               
         }
       );
+      this.getAllIntakes();
+      this.getAllBranches();
+      // this.getAllIntakes();
+      this.getAllStudyProg();
+      this.getAllCourses();
 
           
   }
@@ -171,6 +190,43 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
     });
 
   }
+
+  getAllIntakes() {
+    this.intakeService.getAll_Intakes().subscribe(
+      result => {
+        this.rowsIntake = result
+      }
+    )
+  }  
+  convertIntakeDates(intake: string){
+     const myMoment: moment.Moment = moment(intake);
+    //targeting the control intakeDate in the component and updating it with the desired formate
+    const intaked =myMoment.format('YYYY-MM-DD');
+    return intaked;
+  }
+
+  getAllBranches(){
+    this.branchservice.getAll().subscribe(
+      result => {
+        this.rowBranch = result;
+      }
+    )
+  } 
+  getAllStudyProg(): void {
+    this.studyprogservice.getAll().subscribe(
+      result => {
+        this.rowStudyProg = result
+      }
+    )
+  }
+
+    getAllCourses(): void {
+      this.courseService.getAll().subscribe(
+        result => {
+          this.rowsCourse = result
+        }
+      )
+    }
 
 
   //geting single student id 
@@ -207,6 +263,7 @@ export class EditApplicationComponent implements OnInit, AfterViewInit{
 
       /* GETING the intake date fron the JSON string and converting it into 15/08/2020*/
       const intake = student[0].intakeDate;
+      console.log(intake);
       // passing the intake variable into moment
        let myMoment: moment.Moment = moment(intake);
        //targeting the control intakeDate in the component and updating it with the desired formate

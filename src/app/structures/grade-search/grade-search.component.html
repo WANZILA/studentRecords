@@ -6,12 +6,13 @@
       <section class="col-sm-6 col-md-3">
           <div class="form-group">
             <label for="gradeCode">Grade Name</label>
-            <input type="text" class="form-control" name="gradeCode" aria-describedby="gradeCode">          
+            <div class="form-group">
+              <label for="gradeCode">Course Name</label>
+              <input type="text" class="form-control" name="gradeCode" aria-describedby="gradeCode"
+              [(ngModel)]='listFilter' placeholder="Enter Grade Name">           
+            </div> 
           </div>        
-      </section>      
-      <section class="col-sm-6 col-md-8 button-margin">
-        <button type="submit" class="btn btn-primary mb-2">Search</button> 
-      </section>
+      </section>    
     </section>    
   </form>  
     
@@ -29,7 +30,7 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let row of rows">
+            <ng-container *ngFor="let row of filteredSearch">
               <tr>
                 <td>{{row.gradeCode}}</td>
                 <td>{{row.gradeRange}}</td>

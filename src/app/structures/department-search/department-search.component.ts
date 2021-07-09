@@ -37,7 +37,30 @@ export class DepartmentSearchComponent implements OnInit {
   INTAKEDATE: string;
 
   //property intake
-  intake: Department
+  intake: Department;
+
+  
+
+      // variables to filter intakes
+      searches: Department [] = [];
+      filteredSearch: Department[];
+      _listFilter: string;
+   
+      //creating a getter to read values and setter to change filtered values
+      get listFilter(): string {
+        return this._listFilter;
+      }
+   
+      set listFilter(value: string){
+        this._listFilter = value;
+        this.filteredSearch = this.listFilter ? this.performFilter(this.listFilter): this.searches;
+      }
+   
+      performFilter(filterBy: string): Department[]{
+        filterBy = filterBy.toLocaleLowerCase();
+        return this.searches.filter((search: Department) =>
+          search.departName.toLocaleLowerCase().indexOf(filterBy) !==-1);
+      }
 
   //Observable variable to aid in getting the otue parameters
   private sub: Subscription;
@@ -84,8 +107,12 @@ export class DepartmentSearchComponent implements OnInit {
   
   getAll(): void {
     this.generalService.getAll().subscribe(
-      result => {
-        this.rows = result
+      {
+        next: searches => {
+          this.searches = searches
+          this.filteredSearch = this.searches;
+        },
+        error: err => this.errorMessage = err
       }
     )
   }

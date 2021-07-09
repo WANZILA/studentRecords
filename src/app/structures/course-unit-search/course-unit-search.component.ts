@@ -5,10 +5,11 @@ import { debounceTime } from 'rxjs/operators';
 
 import * as moment from 'moment';
 import { GenericValidatorsService } from '../../shared/generic-validators.service';
-import { CourseUnit } from '../structure';
+import { Course, CourseUnit } from '../structure';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CourseUnitService } from '../courseUnit.service';
+import { CourseService } from '../course.service';
 
 const VALIDATION_MESSAGES = {
   //admin
@@ -69,6 +70,7 @@ export class CourseUnitSearchComponent implements OnInit {
   //Observable variable to aid in getting the otue parameters
   private sub: Subscription;
 
+  rowsCourse: Course[] = [];
   rows: CourseUnit[] = [];
 
   //use generic validation message Class
@@ -79,6 +81,7 @@ export class CourseUnitSearchComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private courseService: CourseService,
     private generalService: CourseUnitService
   ) {
     //define an instance of the validator for use with this form.
@@ -88,10 +91,12 @@ export class CourseUnitSearchComponent implements OnInit {
   ngOnInit(): void {
 
     this.generalForm = this.fb.group({
-      departName: ['', [Validators.required, Validators.minLength(2)]]
+     // departName: ['', [Validators.required, Validators.minLength(2)]],
+      courseCode: ['', [Validators.required, Validators.minLength(2)]]
     });
 
-    this.getAll();
+    this.getAllCourses();
+    // this.getAll();
 
   }
 
@@ -107,8 +112,26 @@ export class CourseUnitSearchComponent implements OnInit {
     });
   }
 
-  getAll(): void {
-    this.generalService.getAll().subscribe(
+  getAllCourses(): void {
+    this.courseService.getAll().subscribe(
+      result => {
+        this.rowsCourse = result
+      }
+    )
+  }
+
+  search():void{
+    const course = this.generalForm.get('courseCode').value;
+
+    if(course){
+      this.getAll(course);
+    } else {
+      alert('Search not Successiful');
+    }
+  }
+
+  getAll(course: string): void {
+    this.generalService.getAll_Structure(course).subscribe(
       result => {
         this.rows = result
       }

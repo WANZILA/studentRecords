@@ -34,3 +34,10 @@ export interface Admin_Reg {
 	lname: string ;
 	title: string ;
 }
+
+// export interface Admin_Search {
+// 	adminId: string;
+
+// 	fname: string ;
+// 	lname: string ;
+// }

@@ -9,6 +9,9 @@ import { Admin } from '../admin';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 import { StringReplaceService } from '../../shared/stringReplace.service';
+import { BranchService } from 'src/app/structures/branch.service';
+import { Branch, Department } from 'src/app/structures/structure';
+import { DepartmentService } from 'src/app/structures/department.service';
 
 
 const VALIDATION_MESSAGES = {
@@ -90,6 +93,10 @@ export class AdminEditComponent implements OnInit {
   // reference to FormGroup Model in the html
   // studentForm: FormGroup;
   generalForm: FormGroup;
+
+  rowBranch: Branch[] = [];
+  rowDepart: Department[] =[]
+
    
   //server error messages
   pageTitle = 'Register New Staff'
@@ -115,6 +122,8 @@ export class AdminEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private adminService: AdminService,
+    private departmentservice: DepartmentService,
+    private branchservice: BranchService,
     private stringReplaceService: StringReplaceService
     ) { 
     //define an instance of the validator for use with this form.
@@ -130,32 +139,32 @@ export class AdminEditComponent implements OnInit {
     title:['',[Validators.required, Validators.minLength(2)]] ,
     fname:['',[Validators.required, Validators.minLength(2)]] ,
     // mname:['',[Validators.required, Validators.minLength(2)]] ,
-    mname:['null'] ,
+    mname:[''] ,
     lname:['',[Validators.required, Validators.minLength(2)]] ,
     // birthDate:['',[Validators.required, Validators.minLength(2)]] ,
     gender:['',[Validators.required, Validators.minLength(2)]] ,
-    maritalStatus:['',[Validators.required, Validators.minLength(2)]] ,
+    maritalStatus:[''] ,
     //children:['',[ Validators.minLength(2)]],
    // employmentStatus:['',[Validators.required, Validators.minLength(2)]],
     //employmentDate:['',[Validators.required, Validators.minLength(2)]],
     //unemploymentDate:['',[ Validators.minLength(2)]],
-     branchNum:['',[Validators.required, Validators.minLength(2)]],
-     departCode:['',[Validators.required, Validators.minLength(2)]],
-     role:['',[Validators.required, Validators.minLength(2)]],
-    nation:['',[Validators.required, Validators.minLength(2)]],
-    district:['',[Validators.required, Validators.minLength(2)]] ,
-    county:['',[Validators.required, Validators.minLength(2)]] ,
-    subCounty:['',[Validators.required, Validators.minLength(2)]] ,
-    parish:['',[Validators.required, Validators.minLength(2)]] ,
-    village:['',[Validators.required, Validators.minLength(2)]] ,
-    phoneAddress1:['',[Validators.required, Validators.minLength(2)]] ,
-    phoneAddress2:['',[ Validators.minLength(2)]] ,
-    emailAddress:['',[Validators.required, Validators.minLength(2)]] ,
+     branchNum:[''],
+     departCode:[''],
+     role:[''],
+    nation:[''],
+    district:[''] ,
+    county:[''] ,
+    subCounty:[''] ,
+    parish:[''] ,
+    village:[''] ,
+    phoneAddress1:[''] ,
+    phoneAddress2:[''] ,
+    emailAddress:[''] ,
     // educationLevel:['',[Validators.required, Validators.minLength(2)]] ,
     // specify:['',[Validators.required, Validators.minLength(2)]],
     // institutions:['',[Validators.required, Validators.minLength(2)]],
-    username:['',[Validators.required, Validators.minLength(2)]],
-    passwords:['',[ Validators.minLength(2)]]
+    username:[''],
+    passwords:['']
     });
 
     // Read the admin Id  from the route paramete using an observable
@@ -175,6 +184,8 @@ export class AdminEditComponent implements OnInit {
         
       }
     );
+    this.getAllBranches();
+    this.getAllDepart();
 
   }
 
@@ -194,6 +205,22 @@ export class AdminEditComponent implements OnInit {
     });
 
   }
+
+  getAllBranches(){
+    this.branchservice.getAll().subscribe(
+      result => {
+        this.rowBranch = result;
+      }
+    )
+  } 
+
+  getAllDepart(){
+    this.departmentservice.getAll().subscribe(
+      result => {
+        this.rowDepart = result;
+      }
+    )
+  } 
  
   //getting admin details
   getOne(adminId: string ): void{
@@ -284,8 +311,8 @@ export class AdminEditComponent implements OnInit {
   
    onSaveComplete(): void{
     // reset the form to clear the warnings
-    this.generalForm.reset();
-    this.router.navigate(['/adminmenu','adminSearch']);
+   this.generalForm.reset();
+   this.router.navigate(['/adminmenu','adminSearch']);
     // console.log('yes ');
   }
   

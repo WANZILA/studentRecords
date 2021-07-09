@@ -16,6 +16,16 @@ export interface SemesterDates{
   studyProgramme: string
 }
 
+export interface Branch{
+  branchNum: string,
+  branchName: string
+}
+
+export interface StudyProgramme{
+  studyprogramme: string,
+  studyprogrammeName: string
+}
+
 export interface Department{
     departCode: string,
     departName: string,

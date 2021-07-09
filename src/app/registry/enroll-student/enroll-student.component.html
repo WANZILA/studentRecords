@@ -7,12 +7,16 @@
         <div class="form-group ">         
           <label for="intakeDate" class="label-margins">intake Name</label>
           <select class="form-control" name="intakeDate"
-          formControlName="intakeDate" class="form-select">
+          formControlName="intakeDate" class="form-select"
+          [ngClass]="{'is-invalid': displayMessage.IntakeDate}">
             <ng-container *ngFor="let rowInta of rowsIntake">
               <option value={{rowInta.intakeDate}}>{{rowInta.intakeName}}</option>
             </ng-container>
             
           </select>
+          <span class="warning-red">
+            {{ displayMessage.IntakeDate}}
+          </span>
         </div>
       </section>
       <section class="col-sm-6 col-md-3">        

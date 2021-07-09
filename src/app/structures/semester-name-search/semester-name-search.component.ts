@@ -39,6 +39,27 @@ export class SemesterNameSearchComponent implements OnInit {
   //property intake
   intake: SemesterName
 
+   // variables to filter intakes
+   searches: SemesterName [] = [];
+   filteredSearch: SemesterName[];
+   _listFilter: string;
+
+   //creating a getter to read values and setter to change filtered values
+   get listFilter(): string {
+     return this._listFilter;
+   }
+
+   set listFilter(value: string){
+     this._listFilter = value;
+     this.filteredSearch = this.listFilter ? this.performFilter(this.listFilter): this.searches;
+   }
+
+   performFilter(filterBy: string): SemesterName[]{
+     filterBy = filterBy.toLocaleLowerCase();
+     return this.searches.filter((search: SemesterName) =>
+       search.semesterName.toLocaleLowerCase().indexOf(filterBy) !==-1);
+   }
+
   //Observable variable to aid in getting the otue parameters
   private sub: Subscription;
 
@@ -86,8 +107,12 @@ export class SemesterNameSearchComponent implements OnInit {
   
   getAll(): void {
     this.generalService.getAll().subscribe(
-      result => {
-        this.rows = result
+      {
+        next: searches => {
+          this.searches = searches
+          this.filteredSearch = this.searches;
+        },
+        error: err => this.errorMessage = err
       }
     )
   }

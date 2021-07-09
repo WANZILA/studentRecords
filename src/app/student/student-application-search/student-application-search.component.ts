@@ -3,6 +3,11 @@ import { FormGroup, FormBuilder,Validators, FormControlName } from '@angular/for
 import { Router } from '@angular/router';
 import { Observable, fromEvent, merge } from 'rxjs';
 import { debounceTime} from 'rxjs/operators';
+import * as moment from 'moment';
+import { BranchService } from 'src/app/structures/branch.service';
+import { IntakeService } from 'src/app/structures/intake.service';
+import { Branch, Intake, StudyProgramme } from 'src/app/structures/structure';
+import { StudyProgrammeService } from 'src/app/structures/studyprogrammes.service';
 import { GenericValidator } from '../../shared/generic-validator';
 
 import{ Student } from '../student';
@@ -22,7 +27,13 @@ export class StudentApplicationSearchComponent implements OnInit, AfterViewInit 
     // reference to FormGroup Model in the html
     // studentForm: FormGroup;
     generalForm: FormGroup;
-  
+
+        //for displaying data from db
+        rowsIntake: Intake[] =[];
+        title: string;
+        rows: Student[] = [];
+        rowBranch: Branch[] = []; 
+        rowStudyProgramme: StudyProgramme[] =[];
  
    //use generic validation message Class
     displayMessage: {[key: string]: string } = {};
@@ -30,26 +41,30 @@ export class StudentApplicationSearchComponent implements OnInit, AfterViewInit 
   
     constructor(private fb: FormBuilder,
       private router: Router,
-      private studentService: StudentService) { 
+      private intakeService: IntakeService,
+      private studyprogservice: StudyProgrammeService,
+      private studentService: StudentService,
+      private branchservice: BranchService) { 
       //define an instance of the validator for use with this form.
       this.genericValidator = new GenericValidator();
     }
 
-    //for displaying data from db
-    title: string;
-    rows: Student[] = [];
+
 
   
 
   ngOnInit(): void {
     // nb add religion 
     this.generalForm = this.fb.group({
-      IntakeDate:['',[Validators.required, Validators.minLength(2)]] ,
-      branchNum:['',[Validators.required, Validators.minLength(2)]],
+      intakeDate:['',[Validators.required, Validators.minLength(2)]] ,
+      branchNum:['',[Validators.required, Validators.minLength(1)]],
       studyprogramme :['',[Validators.required, Validators.minLength(2)]]
     });
-
-    this.getStudents();
+    
+   // this.getStudents();
+   this.getAllBranches();
+   this.getAllIntakes();
+   this.getAllStudyProg();
   }
 
   ngAfterViewInit(): void {
@@ -63,7 +78,14 @@ export class StudentApplicationSearchComponent implements OnInit, AfterViewInit 
       this.displayMessage = this.genericValidator.processMessages(this.generalForm);
     });
   }
- 
+  
+  getAllBranches(){
+    this.branchservice.getAll().subscribe(
+      result => {
+        this.rowBranch = result;
+      }
+    )
+  }
   getStudents(){
     this.studentService.getStudents().subscribe(
       result => {
@@ -72,10 +94,43 @@ export class StudentApplicationSearchComponent implements OnInit, AfterViewInit 
     )
   }
 
+  getAllIntakes(): void {
+    this.intakeService.getAll_Intakes().subscribe(
+      result => {
+        this.rowsIntake= result
+      }
+    )
+  }   
+  getAllStudyProg(): void {
+    this.studyprogservice.getAll().subscribe(
+      result => {
+        this.rowStudyProgramme = result
+      }
+    )
+  }
+
   // encordUrl(text:string){
   //   console.log(text);
   //   return encodeURIComponent(text);
   // }
+  // 
+  search(): void{
+   const intakeD = this.generalForm.get('intakeDate').value;
+   const dateMoment: moment.Moment = moment(intakeD);
+      const intake = dateMoment.format('YYYY-MM-DD');
+   const branch = this.generalForm.get('branchNum').value;
+   const studyProg = this.generalForm.get('studyprogramme').value;
+    
+    this.studentService.student_get_all_Student_Intakes(intake, branch, studyProg).subscribe(
+      result => {
+       //  this.displayCourseUnits(result);
+       this.rows = result;
+     
+      }
+    );
+
+   }
+
   stringReplace(text:string){
     console.log(text);
    
@@ -86,9 +141,13 @@ export class StudentApplicationSearchComponent implements OnInit, AfterViewInit 
     return txt3;
   }
 
-  // fnameControl = new FormControl('');
-  save(){
-    console.log('Yeah');
+  clears(): void{
+    this.generalForm.get('intakeDate').patchValue('');
+    this.generalForm.get('branchNum').patchValue('');
+    this.generalForm.get('studyprogramme').patchValue('');
   }
+
+
+
 
 }

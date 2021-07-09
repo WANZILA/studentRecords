@@ -1,59 +1,72 @@
 
 <div class="container-md">
   
-  <form novalidate [formGroup]="generalForm" (ngSubmit)="save()" >
+  <form novalidate [formGroup]="generalForm" (ngSubmit)="search()" >
     <h3> Intake </h3>
     <section class="row">      
       <section class="col-sm-12 col-md-3">
-        <div class="form-group">         
-          <label for="IntakDate" class="label-margins">Intake Name</label>
-            <select class="form-control"  class="form-select"
-              id="intakedate"
-              formControlName="IntakeDate"
-              [ngClass]="{'is-invalid': displayMessage.IntakeDate}">
-              <option></option>
-              <option>choose intake</option>
+        <div class="form-group ">         
+            <label for="intakeDate" class="label-margins">intake Name</label>
+            <select class="form-control" name="intakeDate"
+            formControlName="intakeDate" class="form-select"
+            [ngClass]="{'is-invalid': displayMessage.IntakeDate}">
+              <ng-container *ngFor="let rowInta of rowsIntake">
+                <option value={{rowInta.intakeDate}}>{{rowInta.intakeName}}</option>
+              </ng-container>
+              
             </select>
             <span class="warning-red">
               {{ displayMessage.IntakeDate}}
             </span>
-        </div>
+        </div>        
       </section>
-      <section class="col-sm-12 col-md-4">        
+      <section class="col-sm-12 col-md-2">        
         <div class="form-group">         
           <label for="branchNum" class="label-margins">Branch Name</label>
-            <select class="form-control" class="form-select"
-              id="branchNum"
-              formControlName="branchNum"
-              [ngClass]="{'is-invalid': displayMessage.branchNum}"
-            >
-              <option></option>
-              <option>choose Branch</option>
-            </select>
+          <select class="form-control" name="branchNum"
+          formControlName ="branchNum" class="form-select"
+          [ngClass]="{'is-invalid': displayMessage.branchNum}">
+            <ng-container *ngFor="let bran of  rowBranch">
+              <option value={{bran.branchNum}}>  {{bran.branchName}}</option>
+            </ng-container>
             <span class="warning-red">
               {{ displayMessage.branchNum}}
             </span>
+          </select>
         </div>
       </section>
-      <section class="col-sm-12 col-md-4">        
+      <section class="col-sm-12 col-md-3">        
         <div class="form-group">         
-          <label for="studyprogramme" class="label-margins">Study </label>
-            <select class="form-control"  class="form-select"
-              id="studyprogramme"
-              formControlName="studyprogramme"
-              [ngClass]="{'is-invalid': displayMessage.studyprogramme}"
-            >
-              <option></option>
-              <option>choose StudyProgramme</option>
-            </select>
+          <label for="studyProgramme" class="label-margins">Study </label> 
+          <select class="form-control" name="studyProgramme"
+          formControlName ="studyprogramme" class="form-select"
+          [ngClass]="{'is-invalid': displayMessage.studyprogramme}">
+            <ng-container *ngFor="let studyP of  rowStudyProgramme">
+              <option value={{studyP.studyprogramme}}>  {{studyP.studyprogrammeName}}</option>
+            </ng-container>
+           
+          </select>
             <span class="warning-red">
               {{ displayMessage.studyprogramme}}
             </span>
         </div>
+      </section>  
+      <section class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <button 
+          class="btn btn-primary mb-2"
+          type="submit" 
+          [title]="generalForm.valid ? 'save data ': 'Disabled until the all fields are filled'"
+          [disabled]="!generalForm.valid"          
+          >Search</button> &nbsp;
+          <button class="btn btn-primary mb-2"
+                type="button"
+                title="Clear your edits"
+                (click)="clears()">
+          Cancel
+        </button>
+        </div>
       </section> 
-      <section class="col-sm-6 col-md-1">
-        <button type="submit" class="btn btn-primary mb-2">Search</button> 
-      </section>
      
     </section>
     

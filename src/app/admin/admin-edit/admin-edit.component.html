@@ -11,31 +11,31 @@
               id="departCode"
               formControlName="departCode"
               [ngClass]="{'is-invalid': displayMessage.departCode}">
-              <option value=""></option>
-              <option>choose intake</option>
+              <ng-container *ngFor="let depart of  rowDepart">
+                <option value={{depart.departCode}}>  {{depart.departName}}</option>
+              </ng-container>
             </select>
             <span class="warning-red">
               {{ displayMessage.departCode}}
             </span>
         </div>
       </section>
-      <section class="col-sm-12 col-md-4">        
+      <section class="col-sm-12 col-md-2">        
         <div class="form-group">         
           <label for="branchNum" class="label-margins">Branch Name</label>
-            <select class="form-control" class="form-select"
-              id="branchNum"
-              formControlName="branchNum"
-              [ngClass]="{'is-invalid': displayMessage.branchNum}"
-            >
-              <option></option>
-              <option>choose Branch</option>
-            </select>
+          <select class="form-control" name="branchNum"
+          formControlName ="branchNum" class="form-select"
+          [ngClass]="{'is-invalid': displayMessage.branchNum}">
+            <ng-container *ngFor="let bran of  rowBranch">
+              <option value={{bran.branchNum}}>  {{bran.branchName}}</option>
+            </ng-container>
             <span class="warning-red">
               {{ displayMessage.branchNum}}
             </span>
+          </select>
         </div>
       </section>
-      <section class="col-sm-12 col-md-4">        
+      <!-- <section class="col-sm-12 col-md-4">        
         <div class="form-group">         
           <label for="role" class="label-margins">Role </label>
             <select class="form-control"  class="form-select"
@@ -50,9 +50,8 @@
               {{ displayMessage.role}}
             </span>
         </div>
-      </section> 
-     
-    </section>   
+      </section>  -->
+     </section>   
     <hr class="hrClass">
 
     <h4>Personal Information</h4>
@@ -72,15 +71,23 @@
  
       </section>
       <section class="col-sm-6 col-md-4">
-        <div class="form-group">
-          <label for="titleId">Title </label>
-          <input type="text" class="form-control" id="titleId"
-          aria-describedby="titleId"
-          formControlName="title"
-          [ngClass]="{'is-invalid': displayMessage.title}"> 
-          <span class="warning-red">
-            {{ displayMessage.title }}
-          </span>         
+        <div class="form-group mb-2">          
+          <label for="title" class="label-margins">Title </label> 
+          <select class="form-control" name="title"
+          formControlName ="title" class="form-select"
+          [ngClass]="{'is-invalid': displayMessage.title}">
+              <option value='Mr.'>Mr</option>
+              <option value='Ms.'> Active</option> 
+              <option value='Dr.'> Doctor</option>
+              <option value='Pr.'> Pastor</option>  
+              <option value='Rev.'> Reverend</option>  
+              <option value='Bp.'> Bishop</option>
+              <option value='Tr.'> Teacher</option>  
+              <option value=''> Other</option>       
+          </select>
+            <span class="warning-red">
+              {{ displayMessage.title}}
+            </span>
         </div>
       </section>
       <section class="col-sm-6 col-md-4">
@@ -146,31 +153,34 @@
     <section class="row">
       <section class="col-sm-6 col-md-4">
         <div class="form-group">
-          <label for="gender">Gender </label>
-          <input type="text" class="form-control" 
-           id="gender"
-           aria-describedby="gender"
-           formControlName="gender"
-           [ngClass]="{'is-invalid': displayMessage.gender}"> 
-           <span class="warning-red">
-            {{ displayMessage.gender}}
-          </span>   
-        </div>
-        
-      </section>
-      <section class="col-sm-6 col-md-4">
-        <div class="form-group">
           <label for="maritalStatus">Marital Status </label>
-          <input type="text" class="form-control" 
-            id="maritalStatus" 
-            aria-describedby="maritalStatus"
-            formControlName="maritalStatus"
-            [ngClass]="{'is-invalid': displayMessage.maritalStatus}">  
+          <select class="form-control" name="gender"
+          formControlName ="maritalStatus" class="form-select"
+          [ngClass]="{'is-invalid': displayMessage.maritalStatus}">
+              <option value='Married'>Married</option>
+              <option value='Divoiced'>Divoiced</option>
+              <option value='Single'> Single</option>
+              <option value='Other'> Other</option>   
+          </select>
             <span class="warning-red">
               {{ displayMessage.maritalStatus }}
             </span>        
         </div>
-      </section>
+      </section> 
+      <section class="col-sm-6 col-md-4">
+        <div class="form-group">
+          <label for="gender">Gender </label>
+          <select class="form-control" name="gender"
+          formControlName ="gender" class="form-select"
+          [ngClass]="{'is-invalid': displayMessage.gender}">
+              <option value='Male'>Male</option>
+              <option value='Female'>Female</option>  
+          </select>
+            <span class="warning-red">
+              {{ displayMessage.gender }}
+            </span>        
+        </div>
+      </section> 
       <!-- <section class="col-sm-6 col-md-4">
         <div class="form-group">
           <label for="religion">Religion </label>

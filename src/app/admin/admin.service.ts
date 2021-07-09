@@ -4,7 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { catchError, tap, map } from 'rxjs/operators';
 
-import { Admin } from './admin';
+import { Admin, Admin_Reg } from './admin';
 
 import { HandleErrors } from '../shared/handleErrors.service';
 // import { StringReplaceService } from '../shared/stringreplace.service';
@@ -40,6 +40,16 @@ export class AdminService {
         catchError(
           this.handleErrors.handleError
         )
+      );
+  }
+
+  getSearchAdmin(departCode: string, branchNum: string): Observable<Admin[]> {
+    // adminId/departcode/:departCode/branchnum/:branchNum
+    const url = `${this.generalUrl}/departcode/${departCode}/branchnum/${branchNum}`;
+    return this.http.get<Admin[]>(url)
+      .pipe(
+        tap(data => console.log('Admins', JSON.stringify(data))),
+        catchError(this.handleErrors.handleError)
       );
   }
 

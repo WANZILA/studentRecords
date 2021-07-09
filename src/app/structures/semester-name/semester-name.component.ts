@@ -42,6 +42,8 @@ export class SemesterNameComponent implements OnInit {
    
      //property generalObjectInterface
      generalObjectInterface: SemesterName;
+
+   
    
      //Observable variable to aid in getting the otue parameters
      private sub: Subscription;

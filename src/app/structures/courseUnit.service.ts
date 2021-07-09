@@ -34,7 +34,7 @@ export class CourseUnitService {
   ) { }
 
 
-
+ // used in mark-edit in the registrar module 
   getAll(): Observable<CourseUnit[]> {
     return this.http.get<CourseUnit[]>(`${this.generalUrl}`)
       .pipe(
@@ -43,6 +43,18 @@ export class CourseUnitService {
           this.handleErrors.handleError
         )
       );
+  }
+
+  // used for course search in structures
+  getAll_Structure(course: string): Observable<CourseUnit[]> {
+   // coursecode/:courseCode
+   const url = `${this.generalUrl}/coursecode/${course}`;
+   return this.http.get<CourseUnit[]>(url)
+     .pipe(
+       tap(data => console.log(JSON.stringify(data))),
+       catchError(
+         this.handleErrors.handleError)
+     );
   }
 
   // getAllSemester(course, sem)

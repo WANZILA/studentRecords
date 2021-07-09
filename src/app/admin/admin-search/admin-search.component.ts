@@ -4,16 +4,16 @@ import { Observable, fromEvent, merge } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-import {Admin } from '../admin';
+import {Admin, Admin_Reg } from '../admin';
 import { AdminService} from '../admin.service';
 import { GenericValidatorsService } from '../../shared/generic-validators.service';
+import { Department, Branch } from 'src/app/structures/structure';
+import { DepartmentService } from 'src/app/structures/department.service';
+import { BranchService } from 'src/app/structures/branch.service';
 
 const VALIDATION_MESSAGES = {
   
   branchNum:{
-    required:' Required'
-  },
-  role:{
     required:' Required'
   },
   departCode:{
@@ -33,17 +33,22 @@ export class AdminSearchComponent implements OnInit {
 
   //reference to the FormGroup Model in the html
   generalForm: FormGroup;
-  
+
+  rowDepart: Department[] = [];
+  rowBranch: Branch[] = [];  
+  rows: Admin_Reg[] = [];
  // use generic validaton message class
  displayMessage: {[key: string]: string } = {};
  private genericValidator: GenericValidatorsService;
  
  // for displaying data from DB
- rows: Admin[] = [];
+ 
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private departservice: DepartmentService,
+    private branchservice: BranchService,
     private adminService: AdminService) {
       this.genericValidator = new GenericValidatorsService(VALIDATION_MESSAGES);
      }
@@ -52,10 +57,11 @@ export class AdminSearchComponent implements OnInit {
     //generating form controls
     this.generalForm = this.fb.group({
       departCode:['',[Validators.required, Validators.minLength(2)]],
-      branchNum: ['',[Validators.required, Validators.minLength(2)]],
-      role: ['',[Validators.required, Validators.minLength(2)]]
+      branchNum: ['',[Validators.required, Validators.minLength(1)]]
     });
-    this.getAll();
+    this.getAllDeparts();
+    this.getAllBranches();
+    // this.getAll();
   }
 
   ngOnDestroy(): void{
@@ -74,10 +80,17 @@ export class AdminSearchComponent implements OnInit {
     });
   }
   
-  getAll(){
-    this.adminService.getAll().subscribe(
+  getAllDeparts(){
+    this.departservice.getAll().subscribe(
       result => {
-        this.rows = result;
+        this.rowDepart = result;
+      }
+    )
+  }
+  getAllBranches(){
+    this.branchservice.getAll().subscribe(
+      result => {
+        this.rowBranch = result;
       }
     )
   }
@@ -91,7 +104,18 @@ export class AdminSearchComponent implements OnInit {
   }
 
   search(){
-    console.log('yeah');
+    const depart = this.generalForm.get('departCode').value;
+    const branch = this.generalForm.get('branchNum').value;
+    this.adminService.getSearchAdmin(depart, branch).subscribe(
+      result => {
+        this.rows = result;      
+       }
+    )
+  }
+
+  clears(): void{
+    this.generalForm.get('departCode').patchValue('');
+    this.generalForm.get('branchNum').patchValue('');
   }
 
 }

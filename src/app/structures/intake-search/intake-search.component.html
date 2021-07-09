@@ -7,12 +7,10 @@
       <section class="col-sm-6 col-md-3">
           <div class="form-group">
             <label for="intakename">Intake Name</label>
-            <input type="text" class="form-control" name="intakeName" aria-describedby="intakename">          
+            <input type="text" class="form-control" name="intakeName" aria-describedby="intakename"
+            [(ngModel)]='listFilter' placeholder="Intake you want to search">          
           </div>        
       </section>      
-      <section class="col-sm-6 col-md-8 button-margin">
-        <button type="submit" class="btn btn-primary mb-2">Filter</button> 
-      </section>
     </section>    
   </form>  
     
@@ -29,7 +27,7 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let row of rows">
+            <ng-container *ngFor="let row of filteredIntakes">
               <tr>
                 <td>{{row.intakeDate| date:'dd/MM/yyyy'}}</td>
                 <td>{{row.intakeName}}</td>

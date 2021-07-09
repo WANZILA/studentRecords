@@ -47,6 +47,28 @@ export class CourseSearchComponent implements OnInit {
   //property intake
   intake: Course
 
+  
+      // variables to filter intakes
+      searches: Course [] = [];
+      filteredSearch: Course[];
+      _listFilter: string;
+   
+      //creating a getter to read values and setter to change filtered values
+      get listFilter(): string {
+        return this._listFilter;
+      }
+   
+      set listFilter(value: string){
+        this._listFilter = value;
+        this.filteredSearch = this.listFilter ? this.performFilter(this.listFilter): this.searches;
+      }
+   
+      performFilter(filterBy: string): Course[]{
+        filterBy = filterBy.toLocaleLowerCase();
+        return this.searches.filter((search: Course) =>
+          search.courseName.toLocaleLowerCase().indexOf(filterBy) !==-1);
+      }
+
   //Observable variable to aid in getting the otue parameters
   private sub: Subscription;
 
@@ -92,8 +114,12 @@ export class CourseSearchComponent implements OnInit {
   
   getAll(): void {
     this.generalService.getAll().subscribe(
-      result => {
-        this.rows = result
+      {
+        next: searches => {
+          this.searches = searches
+          this.filteredSearch = this.searches;
+        },
+        error: err => this.errorMessage = err
       }
     )
   }

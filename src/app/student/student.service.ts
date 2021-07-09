@@ -43,6 +43,17 @@ export class StudentService {
       catchError(this.handleError)
     );
   }
+
+  student_get_all_Student_Intakes(intake: string, branch: string, studyProg: string): Observable<Student[]>{
+    // /intakedate/:intakeDate/branch/:branchNum/studyprog/:studyProgramme
+   // 
+    const url = `${this.studentUrl}/intakedate/${intake}/branch/${branch}/studyprog/${studyProg}`;
+    return this.http.get<Student[]>(url)
+    .pipe(
+      tap(data => console.log('getStudent ' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
  
   // used in reg module to get all study programmes 
   // Nb it must be put in structures in version 0.2

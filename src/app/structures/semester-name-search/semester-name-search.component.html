@@ -7,14 +7,11 @@
       <section class="col-sm-6 col-md-3">
         <div class="form-group">
           <label for="semesterName">Semester Name </label>
-          <input type="text" class="form-control" name="semesterName" aria-describedby="semesterName">          
+          <input type="text" class="form-control" name="semesterName" aria-describedby=" semesterName"
+            [(ngModel)]='listFilter' placeholder="Enter Semester Name">          
         </div>
       </section>
-      <section class="col-sm-6 col-md-8">
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary mb-2 button-margin">Filter</button>     
-        </div>
-      </section>
+
     </section>    
   </form>  
     
@@ -30,7 +27,7 @@
             </tr>
           </thead>
           <tbody>
-           <ng-container *ngFor="let row of rows">
+           <ng-container *ngFor="let row of filteredSearch">
             <tr>
               <td>{{row.semesterNum}}</td>
               <td>{{row.semesterName}}</td>

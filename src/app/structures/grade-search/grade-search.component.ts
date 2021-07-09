@@ -40,6 +40,27 @@ export class GradeSearchComponent implements OnInit {
   //property intake
   intake: Grade
 
+   // variables to filter intakes
+   searches: Grade [] = [];
+   filteredSearch: Grade[];
+   _listFilter: string;
+
+   //creating a getter to read values and setter to change filtered values
+   get listFilter(): string {
+     return this._listFilter;
+   }
+
+   set listFilter(value: string){
+     this._listFilter = value;
+     this.filteredSearch = this.listFilter ? this.performFilter(this.listFilter): this.searches;
+   }
+
+   performFilter(filterBy: string): Grade[]{
+     filterBy = filterBy.toLocaleLowerCase();
+     return this.searches.filter((search: Grade) =>
+       search.gradeCode.toLocaleLowerCase().indexOf(filterBy) !==-1);
+   }
+
   //Observable variable to aid in getting the otue parameters
   private sub: Subscription;
 
@@ -85,8 +106,12 @@ export class GradeSearchComponent implements OnInit {
   
   getAll(): void {
     this.generalService.getAll().subscribe(
-      result => {
-        this.rows = result
+      {
+        next: searches => {
+          this.searches = searches
+          this.filteredSearch = this.searches;
+        },
+        error: err => this.errorMessage = err
       }
     )
   }
